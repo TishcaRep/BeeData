@@ -1,0 +1,10 @@
+{
+    "require": {
+        "sunaryohadi/ezsql-mysqli": "^1.1",
+        "nette/mail": "^2.4",
+        "tipsyphp/tipsy": "^0.11.8",
+        "delight-im/auth": "^8.0.2",
+        "matomo/ini": "^2.0",
+        "Gettext/Gettext": "^4.6"
+    }
+}

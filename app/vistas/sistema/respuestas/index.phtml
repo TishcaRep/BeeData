@@ -1,0 +1,239 @@
+<div class="row">
+	<div class="col-sm-12">
+		<div class="page-title-box">
+			<div class="btn-group float-right">
+				<ol class="breadcrumb hide-phone p-0 m-0">
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard') ?>">
+							<?= _('Inicio')?></a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard/catalogos/') ?>">
+							<?= _('Catalogos')?></a>
+					</li>
+					<li class="breadcrumb-item active">
+						<?= _('Respuestas')?>
+					</li>
+				</ol>
+			</div>
+			<h4 class="page-title">
+				<?= _('Respuestas')?>
+			</h4>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">
+					<?= _('Grupos de Respuestas')?>
+				</h4>
+				<hr>
+				<div class="m-b-30">
+					<button class="btn btn-success waves-effect waves-light m-r-10 m-b-10 pull-right" data-toggle="modal" data-target="#nuevoGrupo">
+						<i class="fas fa-plus-circle"></i>
+						<?php echo _('Agregar') ?>
+					</button>
+				</div>
+				<br>
+				<hr>
+				<table class="table table-condensed table-hover table-striped tabla-ajax" data-url="<?php echo site_url('ajax/sistema/respuestas'); ?>" data-url-editar="<?php echo site_url('ajax/sistema/respuestas/consultar'); ?>" data-url-borrar="<?php echo site_url('ajax/sistema/respuestas/eliminar'); ?>">
+					<thead>
+						<tr>
+							<th data-align="center" data-column-id="id" data-type="numeric">id</th>
+							<th data-align="center" data-column-id="Nombre"><?= _('Nombre') ?></th>
+							<th data-align="center" data-column-id="Numero_respuestas"><?= _('Numero de respuestas') ?>	</th>
+							<th data-align="center" data-formatter="acciones" data-sortable="false"><?php echo _('Acciones') ?></th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div id="grupos-app">
+	<div id="nuevoGrupo" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h6 class="modal-title">
+						<?=_('Agregar grupo')?>
+					</h6>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<label class="col-form-label required">Nombre de grupo</label>
+					<input class="form-control" type="text" placeholder="" name="datos[Grupo]" required v-model="nombreGrupo">
+					<div class="form-group row trespuestas">
+						<table class="table table-condensed table-hover table-striped">
+							<thead>
+								<tr>
+									<th data-column-id="id" data-type="numeric">#</th>
+									<th data-column-id="Nombre">Respuestas</th>
+									<th data-column-id="no_respuestas">Valor</th>
+									<th data-formatter="acciones" data-sortable="false">Imagen</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Totalmente satisfecho</td>
+									<td>5</td>
+									<td><i class="far fa-grin-beam"></i></td>
+									<td class="text-center" style="">
+										<div class="actions">
+											<a href="#" data-toggle="" data-target="#Editar" data-id="1" class="btn btn-secondary m-r-5  btn-editar-registro">
+												<i class="mdi mdi-pencil" aria-hidden="true"></i>
+											</a>
+											<a href="#" class="btn btn-danger btn-eliminar-registro" data-id="1">
+												<i class="mdi mdi-delete-forever" aria-hidden="true"></i></a>
+												<p></p>
+										</div>
+									</td>
+								</tr>
+								<tr class="modal-table">
+									<td>1</td>
+									<td><input class="form-control form-control-sm" type="text" placeholder="Totalmente satisfecho">
+									</td>
+									<td>
+										<select class="form-control form-control-sm" name="datos[r1v]" id="numresp">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option selected>5</option>
+										</select>
+									</td>
+									<td><i class="far fa-grin-beam"></i></td>
+								</tr>
+								<tr class="modal-table">
+									<td>2</td>
+									<td><input class="form-control form-control-sm" name="datos[r2r]" type="text">
+									</td>
+									<td>
+										<select class="form-control form-control-sm" name="datos[r2v]" id="numresp">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option selected>5</option>
+										</select>
+									</td>
+									<td><i class="far fa-smile"></i></td>
+								</tr>
+								<tr class="modal-table">
+									<td>3</td>
+									<td><input class="form-control form-control-sm" name="datos[r3r]" type="text">
+									</td>
+									<td>
+										<select class="form-control form-control-sm" name="datos[r3v]" id="numresp">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option selected>5</option>
+										</select>
+									</td>
+									<td><i class="far fa-meh"></i></td>
+								</tr>
+								<tr class="modal-table">
+									<td>4</td>
+									<td><input class="form-control form-control-sm" name="datos[r4r]" type="text">
+									</td>
+									<td>
+										<select class="form-control form-control-sm" name="datos[r4v]" id="numresp">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option selected>5</option>
+										</select>
+									</td>
+									<td><i class="far fa-meh-rolling-eyes"></i></td>
+								</tr>
+								<tr class="modal-table">
+									<td>5</td>
+									<td><input class="form-control form-control-sm" name="datos[r5r]" type="text">
+									</td>
+									<td>
+										<select class="form-control form-control-sm" name="datos[r5v]" id="numresp">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option selected>5</option>
+										</select>
+									</td>
+									<td><i class="far fa-angry"></i></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">Guardar grupo</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade show modal-detalles" id="Editar" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					<?=_('Editar Grupo')?>
+				</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form class="form-ajax" data-url="sistema/respuestas/editar" data-parsley-validate>
+					<label class="col-form-label required">Nombre de grupo</label>
+					<input type="hidden" name="datos[idGrupo]" :value="datos[0].id">
+					<input class="form-control" type="text" placeholder="" name="datos[Grupo]" required v-model="datos[0].Nombre">
+					<div class="form-group row trespuestas">
+						<table class="table table-condensed table-hover table-striped">
+							<thead>
+								<tr>
+									<th>Respuestas</th>
+									<th>Valor</th>
+									<th>Imagen</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="dato in datos" class="modal-table">
+									<td>
+										<input class="form-control form-control-sm" type="text" :name="'datos[respuestas]['+dato.idRes+']'" :value="dato.Respuesta">
+									</td>
+									<td>
+										<select class="form-control form-control-sm" id="numresp" :name="'datos[valores]['+dato.idRes+']'" :value="dato.Valor">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+										</select>
+									</td>
+									<td><i :class="dato.carita"></i></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" >Guardar grupo</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>

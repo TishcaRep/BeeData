@@ -1,0 +1,62 @@
+<?php global $sidebar_menu, $site_url, $ruta; ?>
+<!-- ========== Left Sidebar Start ========== -->
+<div class="left side-menu">
+    <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
+		<i class="ion-close"></i>
+	</button>
+
+    <!-- LOGO -->
+    <div class="topbar-left">
+        <div class="text-center">
+            <a href="<?php site_url('dashboard'); ?>" class="logo"><img src="<?php echo $site_url; ?>/sistema/images/logo_web.png" alt="logo"></a>
+        </div>
+    </div>
+
+    <div class="sidebar-inner slimscrollleft">
+
+        <div id="sidebar-menu">
+            <ul>
+                <!--
+				<li class="menu-title">
+				</li>
+				-->
+
+                <?php foreach($sidebar_menu as $i => $elem): ?>
+                <li <?php echo (!empty($elem[ 'hijos'])) ? 'class="has_sub"' : ''; ?>>
+                    <a href="<?php echo (!empty($elem['url']))? $elem['url'] : 'javascript:void(0);'; ?>" class="waves-effect <?php echo (!empty($elem['url']) && strpos($elem['url'], $ruta) !== FALSE) ? 'active' : ''; ?>">
+                        <?php if(!empty($elem['icono'])): ?>
+                        <i class="<?php echo $elem['icono']; ?>" aria-hidden="true"></i>
+                        <?php endif; ?>
+                        <span><?php echo $elem['nombre']; ?></span>
+                        <?php create_submenu($elem); ?>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- end sidebarinner -->
+</div>
+<!-- Left Sidebar End -->
+<?php
+function create_submenu($element){
+	global $sidebar_menu;
+	if(!empty($element['hijos'])): ?>
+    <span class="float-right"><i class="mdi mdi-chevron-right"></i></span>
+    </a>
+    <ul class="list-unstyled">
+        <?php foreach($element['hijos'] as $i => $e): ?>
+        <li <?php echo (!empty($e[ 'hijos'])) ? 'class="has_sub"' : ''; ?>>
+            <a href="<?php echo (isset($e['url']))? $e['url'] : 'javascript:void(0);'; ?>" class="waves-effect">
+                <?php if(!empty($e['icono'])): ?>
+                <i class="<?php echo $e['icono']; ?>" aria-hidden="true"></i>
+                <?php endif; ?>
+                <span><?php echo $e['nombre']; ?></span>
+                <?php create_submenu($e); ?>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+    <?php else: ?>
+    </a>
+    <?php endif;
+}

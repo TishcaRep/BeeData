@@ -1,0 +1,18 @@
+<?php global $site_url, $tekodb; ?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+		<title>Beedata | <?php echo !empty($GLOBALS['titulo']) ? $GLOBALS['titulo'] : ''; ?></title>
+		<link rel="shortcut icon" href="<?php echo $site_url; ?>/sitio/icon_web.png">
+    	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link rel="stylesheet" href="<?php echo $site_url; ?>/sitio/style.css" />
+	</head>
+	<body>
+		<?= $this->content ?>
+		<!-- Scripts -->
+		<script type="text/javascript"> var ajaxurl = "<?php echo $site_url,'/ajax'; ?>"; var siteurl = "<?php echo $site_url;  ?>"; </script>
+		<script type="text/javascript" src="<?php echo $site_url; ?>/sitio/js/actions.js"></script>
+	</body>
+</html>

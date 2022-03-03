@@ -1,0 +1,1651 @@
+<div class="row">
+	<div class="col-sm-12">
+		<div class="page-title-box">
+			<div class="btn-group float-right">
+				<ol class="breadcrumb hide-phone p-0 m-0">
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard') ?>">
+							<?= _('Inicio')?></a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard/unidades/') ?>">
+							<?= _('Unidades')?></a>
+					</li>
+					<li class="breadcrumb-item active">
+						<?= _('Mis Planes')?>
+					</li>
+				</ol>
+			</div>
+			<h4 class="page-title">
+				<?= _('Mis Planes')?>
+			</h4>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">
+					<?php echo _('Mis Planes') ?>
+				</h4>
+				<hr>
+<div class="table-responsive text-nowrap">
+	<table class="table table-condensed table-hover table-striped tabla-ajax" data-url="<?=site_url('ajax/sistema/planes');?>" >
+		<thead>
+			<tr>
+				<th data-column-id="id" data-type="numeric">id</th>
+				<th data-column-id="Nombre"><?php echo _('Unidad Negocio') ?></th>
+				<th data-column-id="Detalle"><?php echo _('Plan contratado') ?></th>
+				<th data-column-id="Vigencia"><?php echo _('Vigencia de Plan') ?>	</th>
+				<th data-column-id="Estatus"><?php echo _('Estatus') ?></th>
+				<th data-column-id="Monto"><?php echo _('Monto') ?></th>
+				<th data-column-id="FormaPago"><?php echo _('Forma pago') ?></th>
+				<th data-formatter="acciones-planes" data-sortable="false"><?php echo _('Acciones') ?></th>
+			</tr>
+		</thead>
+	</table>
+	</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div id="Contrato" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg modal-xl">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					<?=_('Contratar un Plan')?>
+				</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group row twizzard">
+					<div class="wizard-form">
+						<div class="container">
+							<div class="upreference"></div>
+							<div class="row">
+								<section>
+									<div class="wizard">
+										<div class="wizard-inner">
+											<div class="connecting-line"></div>
+											<ul class="nav nav-tabs" role="tablist">
+												<li role="presentation" class="active">
+													<a href="#step1cont" data-toggle="tab" aria-controls="step1cont" role="tab" title="<?=_('Escoge tu Plan')?>">
+														<span class="round-tab">
+															<i class="fas fa-tasks"></i>
+														</span>
+													</a>
+												</li>
+
+												<li role="presentation" class="disabled">
+													<a href="#step2cont" data-toggle="tab" aria-controls="step2cont" role="tab" title="<?=_('Forma de pago')?>">
+														<span class="round-tab">
+														<i class="fas fa-money-check-alt"></i>
+														</span>
+													</a>
+												</li>
+												<li role="presentation" class="disabled">
+													<a href="#step3cont" data-toggle="tab" aria-controls="step3cont" role="tab" title="<?=_('Resumen')?>">
+														<span class="round-tab">
+															<i class="fas fa-check-circle"></i>
+														</span>
+													</a>
+												</li>
+											</ul>
+										</div>
+
+										<form>
+										<div class="tab-content">
+												<div class="tab-pane active col-10-modal" id="step1cont">
+													<h6 class="titulo-modal">
+														<?=_('Escoge tu plan')?>
+													</h6>
+
+													<div class="titulo_vigencia">
+														<h4 class="modal-title pull-left">
+															<?=_('Vigencia:')?>
+														</h4>
+														<div class="vigencias">
+															<h4 class="modal-title pull-left">
+																<?=_('Fecha de Inicio:').date("j/n/Y")?>
+															</h4>
+															<h4 class="modal-title pull-left">
+																<?=_('Fecha de Renovación 01/12/19')?>
+															</h4>
+														</div>
+													</div>
+
+													<div class="modal-container">
+														<div class="container-fluid">
+															<div id="carouselcontrato" class="carousel slide" data-ride="carousel" data-interval="false">
+																	<div class="carousel-inner row w-100 mx-auto slick_planes" role="listbox">
+																			<div v-for="(dato, index) in datos" :class="{'carousel-item':true,'col-md-4':true,'active':(index==0)}">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">{{dato.Nombre}}</h5>
+																							<p class="card-text">*IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">{{dato.LimiteClientes}} clientes máximo</li>
+																						<li class="list-group-item">{{dato.LimiteEncuestas}} encuestas máximo</li>
+																					</ul>
+																					<!--<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>-->
+																					<label class="containercard">
+																						<input v-if="index==0" type="radio" name="plan" v-model="id" :value="dato.id" checked>
+																						<input v-if="index!=0" type="radio" name="plan" v-model="id" :value="dato.id">
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																	</div>
+																	<a class="carousel-control-prev" href="#carouselcontrato" role="button" data-slide="prev">
+																			<i class="fa fa-chevron-left fa-lg text-muted"></i>
+																			<span class="sr-only">Previous</span>
+																	</a>
+																	<a class="carousel-control-next text-faded" href="#carouselcontrato" role="button" data-slide="next">
+																			<i class="fa fa-chevron-right fa-lg text-muted"></i>
+																			<span class="sr-only">Next</span>
+																	</a>
+															</div>
+													</div>
+												</div>
+													<ul class="list-inline pull-right">
+														<li><button type="button" class="btn btn-primary next-step">
+																<?=_('Continuar')?></button>
+														</li>
+													</ul>
+												</div>
+
+												<div class="tab-pane col-10-modal" id="step2cont">
+													<h6 class="titulo-modal">
+														<?=_('Forma de Pago')?>
+													</h6>
+
+													<div class="titulo_vigencia">
+														<h4 class="modal-title pull-left">
+															<?=_('Vigencia:')?>
+														</h4>
+														<div class="vigencias">
+															<h4 class="modal-title pull-left">
+																<?=_('Fecha de Inicio: 01/12/17')?>
+															</h4>
+															<h4 class="modal-title pull-left">
+																<?=_('Fecha de Renovación 01/12/19')?>
+															</h4>
+														</div>
+													</div>
+
+													<div class="modal-container contrato_pago">
+															<div class="step2_formapago">
+																	<label class="col-form-label required">
+																		<?php echo _('Forma de pago') ?>
+																	</label>
+																	<label class="containerbx">
+																		<?=_('Spei')?>
+																		<input type="radio" name="formapago" value="spei" checked>
+																		<span class="checkmark"></span>
+																	</label>
+																	<label class="containerbx">
+																		<?=_('Tienda Comercial')?>
+																		<input type="radio" name="formapago" value="tiendacomercial">
+																		<span class="checkmark"></span>
+																	</label>
+																	<label class="containerbx">
+																		<?=_('Tarjeta')?>
+																		<input type="radio" name="formapago" value="tarjeta">
+																		<span class="checkmark"></span>
+																	</label>
+																	<span class="extrainfofoot">Se te cobrará x% de comisión</span>
+																	<form action="" method="POST" id="card-form">
+  <span class="card-errors"></span>
+  <div>
+    <label>
+      <span>Cardholder name</span>
+      <input type="text" size="20" data-conekta="card[name]">
+    </label>
+  </div>
+  <div>
+    <label>
+      <span>Card number</span>
+      <input type="text" size="20" data-conekta="card[number]">
+    </label>
+  </div>
+  <div>
+    <label>
+      <span>CVC</span>
+      <input type="text" size="4" data-conekta="card[cvc]">
+    </label>
+  </div>
+  <div>
+    <label>
+      <span>Expiration date (MM/YYYY)</span>
+      <input type="text" size="2" data-conekta="card[exp_month]">
+    </label>
+    <span>/</span>
+    <input type="text" size="4" data-conekta="card[exp_year]">
+  </div>
+  <button type="submit">Create token</button>
+</form>
+
+															</div>
+
+
+															<div id="tipo_plan_pago">
+																<div class="form-group">
+																		<label for="tipo_pago_plan">
+																			<label class="col-form-label required">
+																				<?php echo _('Tipo de pago') ?></label>
+																		</label>
+																		<select class="form-control" id="tipo_pago_plan">
+																			<option>
+																				<?=_('De contado')?>
+																			</option>
+																			<option>
+																				<?=_('Diferido')?>
+																			</option>
+																		</select>
+																</div>
+																<div class="extra_plan_pago">
+																	<label class="containerbx">
+																		<?=_('Diferidos (3 meses) + 8% de comisión')?>
+																		<input type="radio" name="diferido" value="3meses" checked>
+																		<span class="checkmark"></span>
+																	</label>
+																	<label class="containerbx">
+																		<?=_('Diferidos (6 meses) + 10% de comisión')?>
+																		<input type="radio" name="diferido" value="6meses">
+																		<span class="checkmark"></span>
+																	</label>
+																</div>
+
+															</div>
+
+
+													</div>
+													<ul class="list-inline pull-right">
+														<li><button type="button" class="btn btn-default prev-step">
+																<?php echo _('Retroceder') ?></button></li>
+														<li><button type="button" class="btn btn-primary next-step">
+																<?=_('Continuar')?></button>
+														</li>
+													</ul>
+												</div>
+
+
+											<div class="tab-pane" role="tabpanel" id="step3cont">
+												<h6 class="titulo-modal">
+													<?=_('Resumen de la contratación')?>
+												</h6>
+										<!--		<div class="titulo_vigencia">
+													<h4 class="modal-title pull-left">
+														<?=_('Vigencia:')?>
+													</h4>
+													<div class="vigencias">
+														<h4 class="modal-title pull-left">
+															<?=_('Fecha de Inicio: 01/12/17')?>
+														</h4>
+														<h4 class="modal-title pull-left">
+															<?=_('Fecha de Renovación 01/12/19')?>
+														</h4>
+													</div>
+												</div>-->
+												<div class="modal-container">
+													<div class="historial_plan">
+														<div class="headhistorial">
+															<div class="info_beedata">
+																<img src="http://localhost/beedata/sistema/images/logo_web.png" alt="logo">
+																<div>
+																	<span><?=_('Beedata.mx')?></span>
+																	<span><?=_('informacion')?></span>
+																	<span><?=_('informacion')?></span>
+																	<span><?=_('informacion')?></span>
+																</div>
+															</div>
+															<div class="info_extra">
+																	<span class="titulo_paquete"><?=_('Detalles:')?></span>
+																	<span class="subtitulo_paquete"></span>
+																	<span class="subtitulo_paquete"><?=_('Fecha:')?></span>
+																	<span class="subtitulo_paquete"> <?=_('31/diciembre/18')?> </span>
+																	<span class="subtitulo_paquete"> <?=_('Num. de Factura:')?>	</span>
+																	<span class="subtitulo_paquete"> <?=_('ghjh5675tgfyg444343')?></span>
+																	<span class="subtitulo_paquete"> <?=_('Num. de cuenta:')?>	</span>
+																	<span class="subtitulo_paquete"> <?=_('ghjh5675tgfyg444343')?></span>
+															</div>
+														</div>
+
+														<div class="resumen_compra">
+															<span class="titulo_paquete"><?php echo _('Resumen de compra:') ?></span>
+															<table class="table table-condensed table-striped table_resumen" id="table-full" data-url="#" data-url-editar="#" data-url-borrar="#">
+																<thead>
+																	<tr>
+																		<th data-column-id="fecha_pago">
+																			<?php echo _('Fecha de pago') ?>
+																		</th>
+																		<th data-column-id="descripcion">
+																			<?php echo _('Descripción') ?>
+																		</th>
+																		<th data-column-id="IVA">
+																			<?php echo _('IVA') ?>
+																		</th>
+																		<th data-column-id="importe">
+																			<?php echo _('Importe') ?>
+																		</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr data-row-id="0">
+																		<td class="text-center" style=""><?=_('21/3/20')?></td>
+																		<td class="text-center" style=""><?=_('Paquete 2: Paquete 100')?></td>
+																		<td class="text-center" style=""><?=_('$3232,00')?></td>
+																		<td class="text-center" style=""><?=_('$3232,00')?></td>
+																	</tr>
+																	<tr data-row-id="1">
+																		<td class="text-center" style=""><?=_('21/3/20')?></td>
+																		<td class="text-center" style=""><?=_('Paquete 2: Paquete 100')?></td>
+																		<td class="text-center" style=""><?=_('$3232,00')?></td>
+																		<td class="text-center" style=""><?=_('$3232,00')?></td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+
+														<div class="costos_plan">
+															<div>
+																<span class="subtitulo_paquete">
+																	<?=_('Monto:')?></span> <span class="titulo_paquete">$100</span>
+																<span class="subtitulo_paquete">
+																	<?=_('Impuestos')?></span> <span class="titulo_paquete">$16</span>
+																<span class="subtitulo_paquete">
+																	<?=_('Subtotal')?></span> <span class="titulo_paquete">$116</span>
+																<span class="subtitulo_paquete">
+																	<?=_('Ajuste proporcional meses restantes (5)')?></span> <span class="titulo_paquete">$48.33</span>
+															</div>
+														</div>
+														<div class="total">
+															<div>
+																<h4 class="modal-title pull-left">
+																	<?=_('TOTAL')?>
+																</h4>
+																<span> $52.20 </span>
+															</div>
+														</div>
+													</div>
+												</div>
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-default prev-step">
+															<?php echo _('Retroceder') ?></button></li>
+													<li><button type="button" class="btn btn-primary next-step" @click="alert('Hola')" data-dismiss="modal">
+															<?php echo _('Pagar') ?></button></li>
+												</ul>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</form>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+ <!-- MODAL RENOVAR -->
+<div id="EscalarContrato" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg modal-xl">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">
+						<?=_('Escalar tu Plan')?>
+					</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group row twizzard">
+						<div class="wizard-form">
+							<div class="container">
+								<div class="upreference"></div>
+								<div class="row">
+									<section>
+										<div class="wizard">
+											<div class="wizard-inner">
+												<div class="connecting-line"></div>
+												<ul class="nav nav-tabs" role="tablist">
+
+													<li role="presentation" class="active">
+														<a href="#step1esc" data-toggle="tab" aria-controls="step1esc" role="tab" title="<?=_('Escala tu Plan')?>">
+															<span class="round-tab">
+																<i class="fas fa-tasks"></i>
+															</span>
+														</a>
+													</li>
+
+													<li role="presentation" class="disabled">
+														<a href="#step2esc" data-toggle="tab" aria-controls="step2esc" role="tab" title="<?=_('Forma de pago')?>">
+															<span class="round-tab">
+															<i class="fas fa-money-check-alt"></i>
+															</span>
+														</a>
+													</li>
+													<li role="presentation" class="disabled">
+														<a href="#step3esc" data-toggle="tab" aria-controls="step3esc" role="tab" title="<?=_('Resumen')?>">
+															<span class="round-tab">
+																<i class="fas fa-check-circle"></i>
+															</span>
+														</a>
+													</li>
+												</ul>
+											</div>
+
+											<form>
+												<div class="tab-content">
+													<div class="tab-pane active col-10-modal" id="step1esc">
+														<h6 class="titulo-modal">
+															<?=_('Escala tu plan')?>
+														</h6>
+
+														<div class="titulo_vigencia">
+															<h4 class="modal-title pull-left">
+																<?=_('Vigencia:')?>
+															</h4>
+															<div class="vigencias">
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Inicio: 01/12/17')?>
+																</h4>
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Renovación 01/12/19')?>
+																</h4>
+															</div>
+														</div>
+
+														<div class="modal-container esc">
+															<div class="plan_actual">
+																<div id="tipo_plan" class="slick_planes">
+																	<h4 class="modal-title">
+																		<?=_('Tu Plan Actual')?>
+																	</h4>
+																			<div class="card">
+																				<div class="card-header">
+																					Paquete 3
+																				</div>
+																				<ul class="list-group list-group-flush">
+																					<li class="list-group-item">500 clientes máximo</li>
+																					<li class="list-group-item">500 encuestas máximo</li>
+																				</ul>
+																			</div>
+																</div>
+															</div>
+
+															<div id="carouselcontrato_2" class="carousel slide" data-ride="carousel_2" data-interval="false">
+																	<div class="carousel-inner row w-100 mx-auto slick_planes" role="listbox">
+																			<div class="carousel-item col-md-6 active">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">Card title</h5>
+																							<p class="card-text">IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">500 clientes máximo</li>
+																						<li class="list-group-item">500 encuestas máximo</li>
+																					</ul>
+																					<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>
+																					<label class="containercard">
+																						<input type="radio" name="plan" value="p1" checked>
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																			<div class="carousel-item col-md-6">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">Card title</h5>
+																							<p class="card-text">IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">500 clientes máximo</li>
+																						<li class="list-group-item">500 encuestas máximo</li>
+																					</ul>
+																					<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>
+																					<label class="containercard">
+																						<input type="radio" name="plan" value="p1">
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																			<div class="carousel-item col-md-6">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">Card title</h5>
+																							<p class="card-text">IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">500 clientes máximo</li>
+																						<li class="list-group-item">500 encuestas máximo</li>
+																					</ul>
+																					<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>
+																					<label class="containercard">
+																						<input type="radio" name="plan" value="p1">
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																			<div class="carousel-item col-md-6">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">Card title</h5>
+																							<p class="card-text">IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">500 clientes máximo</li>
+																						<li class="list-group-item">500 encuestas máximo</li>
+																					</ul>
+																					<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>
+																					<label class="containercard">
+																						<input type="radio" name="plan" value="p1">
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																			<div class="carousel-item col-md-6">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">Card title</h5>
+																							<p class="card-text">IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">500 clientes máximo</li>
+																						<li class="list-group-item">500 encuestas máximo</li>
+																					</ul>
+																					<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>
+																					<label class="containercard">
+																						<input type="radio" name="plan" value="p1">
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																			<div class="carousel-item col-md-6">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">Card title</h5>
+																							<p class="card-text">IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">500 clientes máximo</li>
+																						<li class="list-group-item">500 encuestas máximo</li>
+																					</ul>
+																					<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>
+																					<label class="containercard">
+																						<input type="radio" name="plan" value="p1">
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																	</div>
+																	<a class="carousel-control-prev" href="#carouselcontrato_2" role="button" data-slide="prev">
+																			<i class="fa fa-chevron-left fa-lg text-muted"></i>
+																			<span class="sr-only">Previous</span>
+																	</a>
+																	<a class="carousel-control-next text-faded" href="#carouselcontrato_2" role="button" data-slide="next">
+																			<i class="fa fa-chevron-right fa-lg text-muted"></i>
+																			<span class="sr-only">Next</span>
+																	</a>
+															</div>
+														</div>
+														<ul class="list-inline pull-right">
+															<li><button type="button" class="btn btn-primary next-step">
+																	<?=_('Continuar')?></button>
+															</li>
+														</ul>
+													</div>
+
+													<div class="tab-pane col-10-modal" id="step2esc">
+														<h6 class="titulo-modal">
+															<?=_('Forma de Pago')?>
+														</h6>
+
+														<div class="titulo_vigencia">
+															<h4 class="modal-title pull-left">
+																<?=_('Vigencia:')?>
+															</h4>
+															<div class="vigencias">
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Inicio: 01/12/17')?>
+																</h4>
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Renovación 01/12/19')?>
+																</h4>
+															</div>
+														</div>
+
+														<div class="modal-container contrato_pago">
+																<div class="step2_formapago">
+																		<label class="col-form-label required">
+																			<?php echo _('Forma de pago') ?>
+																		</label>
+																		<label class="containerbx">
+																			<?=_('Spei')?>
+																			<input type="radio" name="formapago" value="spei" checked>
+																			<span class="checkmark"></span>
+																		</label>
+																		<label class="containerbx">
+																			<?=_('Tienda Comercial')?>
+																			<input type="radio" name="formapago" value="tiendacomercial">
+																			<span class="checkmark"></span>
+																		</label>
+																		<label class="containerbx">
+																			<?=_('Tarjeta')?>
+																			<input type="radio" name="formapago" value="tarjeta">
+																			<span class="checkmark"></span>
+																		</label>
+																		<span class="extrainfofoot">Se te cobrará x% de comisión</span>
+																</div>
+
+																<div id="tipo_plan_pago">
+																	<div class="form-group">
+																			<label for="tipo_pago_plan">
+																				<label class="col-form-label required">
+																					<?php echo _('Tipo de pago') ?></label>
+																			</label>
+																			<select class="form-control" id="tipo_pago_plan">
+																				<option>
+																					<?=_('De contado')?>
+																				</option>
+																				<option>
+																					<?=_('Diferido')?>
+																				</option>
+																			</select>
+																	</div>
+																	<div class="extra_plan_pago">
+																		<label class="containerbx">
+																			<?=_('Diferidos (3 meses) + 8% de comisión')?>
+																			<input type="radio" name="diferido" value="3meses" checked>
+																			<span class="checkmark"></span>
+																		</label>
+																		<label class="containerbx">
+																			<?=_('Diferidos (6 meses) + 10% de comisión')?>
+																			<input type="radio" name="diferido" value="6meses">
+																			<span class="checkmark"></span>
+																		</label>
+																	</div>
+
+																</div>
+														</div>
+														<ul class="list-inline pull-right">
+															<li><button type="button" class="btn btn-default prev-step">
+																	<?php echo _('Retroceder') ?></button></li>
+															<li><button type="button" class="btn btn-primary next-step">
+																	<?=_('Continuar')?></button>
+															</li>
+														</ul>
+													</div>
+
+
+													<div class="tab-pane" role="tabpanel" id="step3esc">
+														<h6 class="titulo-modal">
+															<?=_('Resumen de la contratación')?>
+														</h6>
+												<!--		<div class="titulo_vigencia">
+															<h4 class="modal-title pull-left">
+																<?=_('Vigencia:')?>
+															</h4>
+															<div class="vigencias">
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Inicio: 01/12/17')?>
+																</h4>
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Renovación 01/12/19')?>
+																</h4>
+															</div>
+														</div>-->
+														<div class="modal-container">
+															<div class="historial_plan">
+																<div class="headhistorial">
+																	<div class="info_beedata">
+																		<img src="http://localhost/beedata/sistema/images/logo_web.png" alt="logo">
+																		<div>
+																			<span>Beedata.mx</span>
+																			<span>informacion</span>
+																			<span>informacion</span>
+																			<span>informacion</span>
+																		</div>
+																	</div>
+																	<div class="info_extra">
+																			<span class="titulo_paquete"><?=_('Detalles:')?></span>
+																			<span class="subtitulo_paquete"></span>
+																			<span class="subtitulo_paquete"><?=_('Fecha:')?></span>
+																			<span class="subtitulo_paquete"> <?=_('31/diciembre/18')?> </span>
+																			<span class="subtitulo_paquete"> <?=_('Num. de Factura:')?>	</span>
+																			<span class="subtitulo_paquete"> <?=_('ghjh5675tgfyg444343')?></span>
+																			<span class="subtitulo_paquete"> <?=_('Num. de cuenta:')?>	</span>
+																			<span class="subtitulo_paquete"> <?=_('ghjh5675tgfyg444343')?></span>
+																	</div>
+																</div>
+
+																<div class="resumen_compra">
+																	<span class="titulo_paquete"><?php echo _('Resumen de compra:') ?></span>
+																	<table class="table table-condensed table-striped table_resumen" id="table-full" data-url="#" data-url-editar="#" data-url-borrar="#">
+																		<thead>
+																			<tr>
+																				<th data-column-id="fecha_pago">
+																					<?php echo _('Fecha de pago') ?>
+																				</th>
+																				<th data-column-id="descripcion">
+																					<?php echo _('Descripción') ?>
+																				</th>
+																				<th data-column-id="IVA">
+																					<?php echo _('IVA') ?>
+																				</th>
+																				<th data-column-id="importe">
+																					<?php echo _('Importe') ?>
+																				</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr data-row-id="0">
+																				<td class="text-center" style="">21/3/20</td>
+																				<td class="text-center" style="">Paquete 2: Paquete 100</td>
+																				<td class="text-center" style="">$3232,00</td>
+																				<td class="text-center" style="">$3232,00</td>
+																			</tr>
+																			<tr data-row-id="1">
+																				<td class="text-center" style="">21/3/20</td>
+																				<td class="text-center" style="">Paquete 2: Paquete 100</td>
+																				<td class="text-center" style="">$3232,00</td>
+																				<td class="text-center" style="">$3232,00</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+
+																<div class="costos_plan">
+																	<div>
+																		<span class="subtitulo_paquete">
+																			<?=_('Monto:')?></span> <span class="titulo_paquete">$100</span>
+																		<span class="subtitulo_paquete">
+																			<?=_('Impuestos')?></span> <span class="titulo_paquete">$16</span>
+																		<span class="subtitulo_paquete">
+																			<?=_('Subtotal')?></span> <span class="titulo_paquete">$116</span>
+																		<span class="subtitulo_paquete">
+																			<?=_('Ajuste proporcional meses restantes (5)')?></span> <span class="titulo_paquete">$48.33</span>
+																	</div>
+																</div>
+																<div class="total">
+																	<div>
+																		<h4 class="modal-title pull-left">
+																			<?=_('TOTAL')?>
+																		</h4>
+																		<span> $52.20 </span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<ul class="list-inline pull-right">
+															<li><button type="button" class="btn btn-default prev-step">
+																	<?php echo _('Retroceder') ?></button></li>
+															<li><button type="button" class="btn btn-primary next-step" data-dismiss="modal">
+																	<?php echo _('Pagar') ?></button></li>
+														</ul>
+													</div>
+
+													<div class="clearfix"></div>
+												</div>
+											</form>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL RENOVAR -->
+
+<div id="RenovarContrato" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg modal-xl">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">
+						<?=_('Renovar tu Plan')?>
+					</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group row twizzard">
+						<div class="wizard-form">
+							<div class="container">
+								<div class="upreference"></div>
+								<div class="row">
+									<section>
+										<div class="wizard">
+											<div class="wizard-inner">
+												<div class="connecting-line"></div>
+												<ul class="nav nav-tabs" role="tablist">
+
+													<li role="presentation" class="active">
+														<a href="#step1ren" data-toggle="tab" aria-controls="step1ren" role="tab" title="<?=_('Renueva tu Plan')?>">
+															<span class="round-tab">
+																<i class="fas fa-tasks"></i>
+															</span>
+														</a>
+													</li>
+
+													<li role="presentation" class="disabled">
+														<a href="#step2ren" data-toggle="tab" aria-controls="step2ren" role="tab" title="<?=_('Forma de pago')?>">
+															<span class="round-tab">
+															<i class="fas fa-money-check-alt"></i>
+															</span>
+														</a>
+													</li>
+													<li role="presentation" class="disabled">
+														<a href="#step3ren" data-toggle="tab" aria-controls="step3ren" role="tab" title="<?=_('Resumen')?>">
+															<span class="round-tab">
+																<i class="fas fa-check-circle"></i>
+															</span>
+														</a>
+													</li>
+												</ul>
+											</div>
+
+											<form>
+												<div class="tab-content">
+													<div class="tab-pane active col-10-modal" id="step1ren">
+														<h6 class="titulo-modal">
+															<?=_('Escala tu plan')?>
+														</h6>
+
+														<div class="titulo_vigencia">
+															<h4 class="modal-title pull-left">
+																<?=_('Vigencia:')?>
+															</h4>
+															<div class="vigencias">
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Inicio: 01/12/17')?>
+																</h4>
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Renovación 01/12/19')?>
+																</h4>
+															</div>
+														</div>
+
+														<div class="modal-container esc">
+															<div class="plan_actual">
+																<div id="tipo_plan" class="slick_planes">
+																	<h4 class="modal-title">
+																		<?=_('Tu Plan Actual')?>
+																	</h4>
+																			<div class="card">
+																				<div class="card-header">
+																					Paquete 3
+																				</div>
+																				<ul class="list-group list-group-flush">
+																					<li class="list-group-item">500 clientes máximo</li>
+																					<li class="list-group-item">500 encuestas máximo</li>
+																				</ul>
+																			</div>
+																</div>
+															</div>
+
+															<div id="carouselcontrato_3" class="carousel slide" data-ride="carousel_3" data-interval="false">
+																	<div class="carousel-inner row w-100 mx-auto slick_planes" role="listbox">
+																			<div class="carousel-item col-md-6 active">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">Card title</h5>
+																							<p class="card-text">IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">500 clientes máximo</li>
+																						<li class="list-group-item">500 encuestas máximo</li>
+																					</ul>
+																					<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>
+																					<label class="containercard">
+																						<input type="radio" name="plan" value="p1" checked>
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																			<div class="carousel-item col-md-6">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">Card title</h5>
+																							<p class="card-text">IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">500 clientes máximo</li>
+																						<li class="list-group-item">500 encuestas máximo</li>
+																					</ul>
+																					<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>
+																					<label class="containercard">
+																						<input type="radio" name="plan" value="p1">
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																			<div class="carousel-item col-md-6">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">Card title</h5>
+																							<p class="card-text">IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">500 clientes máximo</li>
+																						<li class="list-group-item">500 encuestas máximo</li>
+																					</ul>
+																					<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>
+																					<label class="containercard">
+																						<input type="radio" name="plan" value="p1">
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																			<div class="carousel-item col-md-6">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">Card title</h5>
+																							<p class="card-text">IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">500 clientes máximo</li>
+																						<li class="list-group-item">500 encuestas máximo</li>
+																					</ul>
+																					<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>
+																					<label class="containercard">
+																						<input type="radio" name="plan" value="p1">
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																			<div class="carousel-item col-md-6">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">Card title</h5>
+																							<p class="card-text">IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">500 clientes máximo</li>
+																						<li class="list-group-item">500 encuestas máximo</li>
+																					</ul>
+																					<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>
+																					<label class="containercard">
+																						<input type="radio" name="plan" value="p1">
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																			<div class="carousel-item col-md-6">
+																				<div class="card">
+																					<div class="card-header">
+																						Featured
+																					</div>
+																					<ul class="list-group list-group-flush">
+																						<li class="list-group-item">
+																							<h5 class="card-title">Card title</h5>
+																							<p class="card-text">IVA Incluido</p>
+																						</li>
+																						<li class="list-group-item">500 clientes máximo</li>
+																						<li class="list-group-item">500 encuestas máximo</li>
+																					</ul>
+																					<div class="card-body">
+																						<h5 class="card-title">Características Generales</h5>
+																						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+																					</div>
+																					<label class="containercard">
+																						<input type="radio" name="plan" value="p1">
+																						<span class="checkmarkcard"></span>
+																					</label>
+																				</div>
+																			</div>
+																	</div>
+																	<a class="carousel-control-prev" href="#carouselcontrato_3" role="button" data-slide="prev">
+																			<i class="fa fa-chevron-left fa-lg text-muted"></i>
+																			<span class="sr-only">Previous</span>
+																	</a>
+																	<a class="carousel-control-next text-faded" href="#carouselcontrato_3" role="button" data-slide="next">
+																			<i class="fa fa-chevron-right fa-lg text-muted"></i>
+																			<span class="sr-only">Next</span>
+																	</a>
+															</div>
+														</div>
+														<ul class="list-inline pull-right">
+															<li><button type="button" class="btn btn-primary next-step">
+																	<?=_('Continuar')?></button>
+															</li>
+														</ul>
+													</div>
+
+													<div class="tab-pane col-10-modal" id="step2ren">
+														<h6 class="titulo-modal">
+															<?=_('Forma de Pago')?>
+														</h6>
+
+														<div class="titulo_vigencia">
+															<h4 class="modal-title pull-left">
+																<?=_('Vigencia:')?>
+															</h4>
+															<div class="vigencias">
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Inicio: 01/12/17')?>
+																</h4>
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Renovación 01/12/19')?>
+																</h4>
+															</div>
+														</div>
+
+														<div class="modal-container contrato_pago">
+																<div class="step2_formapago">
+																		<label class="col-form-label required">
+																			<?php echo _('Forma de pago') ?>
+																		</label>
+																		<label class="containerbx">
+																			<?=_('Spei')?>
+																			<input type="radio" name="formapago" value="spei" checked>
+																			<span class="checkmark"></span>
+																		</label>
+																		<label class="containerbx">
+																			<?=_('Tienda Comercial')?>
+																			<input type="radio" name="formapago" value="tiendacomercial">
+																			<span class="checkmark"></span>
+																		</label>
+																		<label class="containerbx">
+																			<?=_('Tarjeta')?>
+																			<input type="radio" name="formapago" value="tarjeta">
+																			<span class="checkmark"></span>
+																		</label>
+																		<span class="extrainfofoot">Se te cobrará x% de comisión</span>
+																</div>
+
+																<div id="tipo_plan_pago">
+																	<div class="form-group">
+																			<label for="tipo_pago_plan">
+																				<label class="col-form-label required">
+																					<?php echo _('Tipo de pago') ?></label>
+																			</label>
+																			<select class="form-control" id="tipo_pago_plan">
+																				<option>
+																					<?=_('De contado')?>
+																				</option>
+																				<option>
+																					<?=_('Diferido')?>
+																				</option>
+																			</select>
+																	</div>
+																	<div class="extra_plan_pago">
+																		<label class="containerbx">
+																			<?=_('Diferidos (3 meses) + 8% de comisión')?>
+																			<input type="radio" name="diferido" value="3meses" checked>
+																			<span class="checkmark"></span>
+																		</label>
+																		<label class="containerbx">
+																			<?=_('Diferidos (6 meses) + 10% de comisión')?>
+																			<input type="radio" name="diferido" value="6meses">
+																			<span class="checkmark"></span>
+																		</label>
+																	</div>
+
+																</div>
+														</div>
+														<ul class="list-inline pull-right">
+															<li><button type="button" class="btn btn-default prev-step">
+																	<?php echo _('Retroceder') ?></button></li>
+															<li><button type="button" class="btn btn-primary next-step">
+																	<?=_('Continuar')?></button>
+															</li>
+														</ul>
+													</div>
+
+
+													<div class="tab-pane" role="tabpanel" id="step3ren">
+														<h6 class="titulo-modal">
+															<?=_('Resumen de la contratación')?>
+														</h6>
+												<!--		<div class="titulo_vigencia">
+															<h4 class="modal-title pull-left">
+																<?=_('Vigencia:')?>
+															</h4>
+															<div class="vigencias">
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Inicio: 01/12/17')?>
+																</h4>
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Renovación 01/12/19')?>
+																</h4>
+															</div>
+														</div>-->
+														<div class="modal-container">
+															<div class="historial_plan">
+																<div class="headhistorial">
+																	<div class="info_beedata">
+																		<img src="http://localhost/beedata/sistema/images/logo_web.png" alt="logo">
+																		<div>
+																			<span>Beedata.mx</span>
+																			<span>informacion</span>
+																			<span>informacion</span>
+																			<span>informacion</span>
+																		</div>
+																	</div>
+																	<div class="info_extra">
+																			<span class="titulo_paquete"><?=_('Detalles:')?></span>
+																			<span class="subtitulo_paquete"></span>
+																			<span class="subtitulo_paquete"><?=_('Fecha:')?></span>
+																			<span class="subtitulo_paquete"> <?=_('31/diciembre/18')?> </span>
+																			<span class="subtitulo_paquete"> <?=_('Num. de Factura:')?>	</span>
+																			<span class="subtitulo_paquete"> <?=_('ghjh5675tgfyg444343')?></span>
+																			<span class="subtitulo_paquete"> <?=_('Num. de cuenta:')?>	</span>
+																			<span class="subtitulo_paquete"> <?=_('ghjh5675tgfyg444343')?></span>
+																	</div>
+																</div>
+
+																<div class="resumen_compra">
+																	<span class="titulo_paquete"><?php echo _('Resumen de compra:') ?></span>
+																	<table class="table table-condensed table-striped table_resumen" id="table-full" data-url="#" data-url-editar="#" data-url-borrar="#">
+																		<thead>
+																			<tr>
+																				<th data-column-id="fecha_pago">
+																					<?php echo _('Fecha de pago') ?>
+																				</th>
+																				<th data-column-id="descripcion">
+																					<?php echo _('Descripción') ?>
+																				</th>
+																				<th data-column-id="IVA">
+																					<?php echo _('IVA') ?>
+																				</th>
+																				<th data-column-id="importe">
+																					<?php echo _('Importe') ?>
+																				</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr data-row-id="0">
+																				<td class="text-center" style="">21/3/20</td>
+																				<td class="text-center" style="">Paquete 2: Paquete 100</td>
+																				<td class="text-center" style="">$3232,00</td>
+																				<td class="text-center" style="">$3232,00</td>
+																			</tr>
+																			<tr data-row-id="1">
+																				<td class="text-center" style="">21/3/20</td>
+																				<td class="text-center" style="">Paquete 2: Paquete 100</td>
+																				<td class="text-center" style="">$3232,00</td>
+																				<td class="text-center" style="">$3232,00</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+
+																<div class="costos_plan">
+																	<div>
+																		<span class="subtitulo_paquete">
+																			<?=_('Monto:')?></span> <span class="titulo_paquete">$100</span>
+																		<span class="subtitulo_paquete">
+																			<?=_('Impuestos')?></span> <span class="titulo_paquete">$16</span>
+																		<span class="subtitulo_paquete">
+																			<?=_('Subtotal')?></span> <span class="titulo_paquete">$116</span>
+																		<span class="subtitulo_paquete">
+																			<?=_('Ajuste proporcional meses restantes (5)')?></span> <span class="titulo_paquete">$48.33</span>
+																	</div>
+																</div>
+																<div class="total">
+																	<div>
+																		<h4 class="modal-title pull-left">
+																			<?=_('TOTAL')?>
+																		</h4>
+																		<span> $52.20 </span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<ul class="list-inline pull-right">
+															<li><button type="button" class="btn btn-default prev-step">
+																	<?php echo _('Retroceder') ?></button></li>
+															<li><button type="button" class="btn btn-primary next-step" data-dismiss="modal">
+																	<?php echo _('Pagar') ?></button></li>
+														</ul>
+													</div>
+
+													<div class="clearfix"></div>
+												</div>
+											</form>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+ <!-- MODAL Cambio -->
+
+<div id="CambiarContrato" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg modal-xl">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">
+						<?=_('Cambiar tu Forma de Pago')?>
+					</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group row twizzard">
+						<div class="wizard-form">
+							<div class="container">
+								<div class="upreference"></div>
+								<div class="row">
+									<section>
+										<div class="wizard wizmall">
+											<div class="wizard-inner">
+												<div class="connecting-line"></div>
+												<ul class="nav nav-tabs navcont" role="tablist">
+													<li role="presentation" class="active">
+														<a href="#step1cam" data-toggle="tab" aria-controls="step1cam" role="tab" title="<?=_('Forma de pago')?>">
+															<span class="round-tab">
+																<i class="fas fa-building"></i>
+															</span>
+														</a>
+													</li>
+													<li role="presentation" class="disabled">
+														<a href="#step2cam" data-toggle="tab" aria-controls="step2cam" role="tab" title="<?=_('Resumen')?>">
+															<span class="round-tab">
+																<i class="fas fa-user-tie"></i>
+															</span>
+														</a>
+													</li>
+												</ul>
+											</div>
+
+											<form>
+												<div class="tab-content">
+													<div class="tab-pane active col-10-modal" id="step1cam">
+														<h6 class="titulo-modal">
+															<?=_('Forma de Pago')?>
+														</h6>
+
+														<div class="titulo_vigencia">
+															<h4 class="modal-title pull-left">
+																<?=_('Vigencia:')?>
+															</h4>
+															<div class="vigencias">
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Inicio: 01/12/17')?>
+																</h4>
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Renovación 01/12/19')?>
+																</h4>
+															</div>
+														</div>
+
+														<div class="modal-container contrato_pago">
+																<div class="formacurrent">
+																		<div id="tipo_plan">
+																			<h4 class="modal-title">
+																				<?=_('Forma de pago actual')?>
+																			</h4>
+																			<div class="form-group">
+																				<div class="col-xs-6">
+																					<span class="subtitulo_paquete">
+																						<?=_('Tienda Comercial')?>
+																					</span>
+																				</div>
+																			</div>
+																	</div>
+																</div>
+																<div class="step2_formapago">
+																		<label class="col-form-label required">
+																			<?php echo _('Forma de pago') ?>
+																		</label>
+																		<label class="containerbx">
+																			<?=_('Spei')?>
+																			<input type="radio" name="formapago" value="spei" checked>
+																			<span class="checkmark"></span>
+																		</label>
+																		<label class="containerbx">
+																			<?=_('Tienda Comercial')?>
+																			<input type="radio" name="formapago" value="tiendacomercial">
+																			<span class="checkmark"></span>
+																		</label>
+																		<label class="containerbx">
+																			<?=_('Tarjeta')?>
+																			<input type="radio" name="formapago" value="tarjeta">
+																			<span class="checkmark"></span>
+																		</label>
+																		<span class="extrainfofoot">Se te cobrará x% de comisión</span>
+																</div>
+
+																<div id="tipo_plan_pago">
+																	<div class="form-group">
+																			<label for="tipo_pago_plan">
+																				<label class="col-form-label required">
+																					<?php echo _('Tipo de pago') ?></label>
+																			</label>
+																			<select class="form-control" id="tipo_pago_plan">
+																				<option>
+																					<?=_('De contado')?>
+																				</option>
+																				<option>
+																					<?=_('Diferido')?>
+																				</option>
+																			</select>
+																	</div>
+																	<div class="extra_plan_pago">
+																		<label class="containerbx">
+																			<?=_('Diferidos (3 meses) + 8% de comisión')?>
+																			<input type="radio" name="diferido" value="3meses" checked>
+																			<span class="checkmark"></span>
+																		</label>
+																		<label class="containerbx">
+																			<?=_('Diferidos (6 meses) + 10% de comisión')?>
+																			<input type="radio" name="diferido" value="6meses">
+																			<span class="checkmark"></span>
+																		</label>
+																	</div>
+
+																</div>
+														</div>
+														<ul class="list-inline pull-right">
+															<li><button type="button" class="btn btn-default prev-step">
+																	<?php echo _('Retroceder') ?></button></li>
+															<li><button type="button" class="btn btn-primary next-step">
+																	<?=_('Continuar')?></button>
+															</li>
+														</ul>
+													</div>
+
+													<div class="tab-pane" role="tabpanel" id="step2cam">
+														<h6 class="titulo-modal">
+															<?=_('Resumen de la contratación')?>
+														</h6>
+												<!--		<div class="titulo_vigencia">
+															<h4 class="modal-title pull-left">
+																<?=_('Vigencia:')?>
+															</h4>
+															<div class="vigencias">
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Inicio: 01/12/17')?>
+																</h4>
+																<h4 class="modal-title pull-left">
+																	<?=_('Fecha de Renovación 01/12/19')?>
+																</h4>
+															</div>
+														</div>-->
+														<div class="modal-container">
+															<div class="historial_plan">
+																<div class="headhistorial">
+																	<div class="info_beedata">
+																		<img src="http://localhost/beedata/sistema/images/logo_web.png" alt="logo">
+																		<div>
+																			<span>Beedata.mx</span>
+																			<span>informacion</span>
+																			<span>informacion</span>
+																			<span>informacion</span>
+																		</div>
+																	</div>
+																	<div class="info_extra">
+																			<span class="titulo_paquete"><?=_('Detalles:')?></span>
+																			<span class="subtitulo_paquete"></span>
+																			<span class="subtitulo_paquete"><?=_('Fecha:')?></span>
+																			<span class="subtitulo_paquete"> <?=_('31/diciembre/18')?> </span>
+																			<span class="subtitulo_paquete"> <?=_('Num. de Factura:')?>	</span>
+																			<span class="subtitulo_paquete"> <?=_('ghjh5675tgfyg444343')?></span>
+																			<span class="subtitulo_paquete"> <?=_('Num. de cuenta:')?>	</span>
+																			<span class="subtitulo_paquete"> <?=_('ghjh5675tgfyg444343')?></span>
+																	</div>
+																</div>
+
+																<div class="resumen_compra">
+																	<span class="titulo_paquete"><?php echo _('Resumen de compra:') ?></span>
+																	<table class="table table-condensed table-striped table_resumen" id="table-full" data-url="#" data-url-editar="#" data-url-borrar="#">
+																		<thead>
+																			<tr>
+																				<th data-column-id="fecha_pago">
+																					<?php echo _('Fecha de pago') ?>
+																				</th>
+																				<th data-column-id="descripcion">
+																					<?php echo _('Descripción') ?>
+																				</th>
+																				<th data-column-id="IVA">
+																					<?php echo _('IVA') ?>
+																				</th>
+																				<th data-column-id="importe">
+																					<?php echo _('Importe') ?>
+																				</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr data-row-id="0">
+																				<td class="text-center" style="">21/3/20</td>
+																				<td class="text-center" style="">Paquete 2: Paquete 100</td>
+																				<td class="text-center" style="">$3232,00</td>
+																				<td class="text-center" style="">$3232,00</td>
+																			</tr>
+																			<tr data-row-id="1">
+																				<td class="text-center" style="">21/3/20</td>
+																				<td class="text-center" style="">Paquete 2: Paquete 100</td>
+																				<td class="text-center" style="">$3232,00</td>
+																				<td class="text-center" style="">$3232,00</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+
+																<div class="costos_plan">
+																	<div>
+																		<span class="subtitulo_paquete">
+																			<?=_('Monto:')?></span> <span class="titulo_paquete">$100</span>
+																		<span class="subtitulo_paquete">
+																			<?=_('Impuestos')?></span> <span class="titulo_paquete">$16</span>
+																		<span class="subtitulo_paquete">
+																			<?=_('Subtotal')?></span> <span class="titulo_paquete">$116</span>
+																		<span class="subtitulo_paquete">
+																			<?=_('Ajuste proporcional meses restantes (5)')?></span> <span class="titulo_paquete">$48.33</span>
+																	</div>
+																</div>
+																<div class="total">
+																	<div>
+																		<h4 class="modal-title pull-left">
+																			<?=_('TOTAL')?>
+																		</h4>
+																		<span> $52.20 </span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<ul class="list-inline pull-right">
+															<li><button type="button" class="btn btn-default prev-step">
+																	<?php echo _('Retroceder') ?></button></li>
+															<li><button type="button" class="btn btn-primary next-step" data-dismiss="modal">
+																	<?php echo _('Pagar') ?></button></li>
+														</ul>
+													</div>
+													<div class="clearfix"></div>
+												</div>
+											</form>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL COMPROBANTE -->
+
+	<!-- MODAL HISTORIAL -->
+<div id="HistoralPagos" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg modal-xl">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">
+						<?=_('Historial de pagos')?>
+					</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="titulo_vigencia">
+						<h4 class="modal-title pull-left">
+							<?=_('Vigencia:')?>
+						</h4>
+						<div class="vigencias">
+							<h4 class="modal-title pull-left">
+								<?=_('Fecha de Inicio: 01/12/17')?>
+							</h4>
+							<h4 class="modal-title pull-left">
+								<?=_('Fecha de Renovación 01/12/19')?>
+							</h4>
+						</div>
+					</div>
+					<div class="modal-container">
+						<table class="table table-condensed table-striped" id="table-full" data-url="#" data-url-editar="#" data-url-borrar="#">
+							<thead>
+								<tr>
+									<th data-column-id="fecha_pago">
+										<?php echo _('Fecha de pago') ?>
+									</th>
+									<th data-column-id="plan">
+										<?php echo _('Plan') ?>
+									</th>
+									<th data-column-id="monto">
+										<?php echo _('Monto') ?>
+									</th>
+									<th data-column-id="concepto">
+										<?php echo _('Concepto') ?>
+									</th>
+									<th data-column-id="forma_pago">
+										<?php echo _('Forma de pago') ?>
+									</th>
+									<th data-column-id="administrador">
+										<?php echo _('Administrador') ?>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr data-row-id="0">
+									<td class="text-center" style="">21/3/20</td>
+									<td class="text-center" style="">Límite de encuentas</td>
+									<td class="text-center" style="">$3232,00</td>
+									<td class="text-center" style="">Plan de pago</td>
+									<td class="text-center" style="">Tienda Comercial</td>
+									<td class="text-center" style="">Julio Tischca Lorem</td>
+								</tr>
+								<tr data-row-id="1">
+									<td class="text-center" style="">21/3/20</td>
+									<td class="text-center" style="">Límite de encuentas</td>
+									<td class="text-center" style="">$3232,00</td>
+									<td class="text-center" style="">Renovación</td>
+									<td class="text-center" style="">Tienda Comercial</td>
+									<td class="text-center" style="">Julio Tischca Lorem</td>
+								</tr>
+								<tr data-row-id="2">
+									<td class="text-center" style="">21/3/20</td>
+									<td class="text-center" style="">Límite de encuentas</td>
+									<td class="text-center" style="">$3232,00</td>
+									<td class="text-center" style="">Renovación</td>
+									<td class="text-center" style="">Tienda Comercial</td>
+									<td class="text-center" style="">Julio Tischca Lorem</td>
+								</tr>
+								<tr data-row-id="3">
+									<td class="text-center" style="">21/3/20</td>
+									<td class="text-center" style="">Límite de encuentas</td>
+									<td class="text-center" style="">$3232,00</td>
+									<td class="text-center" style="">Plan de pago</td>
+									<td class="text-center" style="">Tienda Comercial</td>
+									<td class="text-center" style="">Julio Tischca Lorem</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

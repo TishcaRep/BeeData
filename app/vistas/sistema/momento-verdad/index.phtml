@@ -1,0 +1,147 @@
+<div class="row">
+	<div class="col-sm-12">
+		<div class="page-title-box">
+			<div class="btn-group float-right">
+				<ol class="breadcrumb hide-phone p-0 m-0">
+					<li class="breadcrumb-item">
+						<a href="<?php echo site_url('dashboard'); ?>"><?php echo _('Inicio') ?></a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="<?php echo site_url('dashboard/catalogos/'); ?>"><?php echo _('Catalogos') ?></a>
+					</li>
+					<li class="breadcrumb-item active">
+						<?php echo _('Momento verdad') ?>
+					</li>
+				</ol>
+			</div>
+			<h4 class="page-title"><?php echo _('Catalogo de Momento Verdad') ?></h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<div class="card m-b-30">
+			<div class="card-body">
+				<h4><?php echo _('Momentos verdad') ?></h4>
+				<hr>
+				<div class="m-b-30">
+					<button data-toggle="modal" data-target="#nuevo" type="button" class="btn btn-success waves-effect waves-light m-r-10 m-b-10 pull-right"><?php echo _('Nuevo registro') ?></button>
+				</div>
+				<br>
+				<hr>
+				<form class="filtros">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label"><?php echo _('Giros empresariales') ?></label>
+						<div class="col-sm-8">
+							<select id="giros" class="custom-select chain-select" data-url="<?= site_url('ajax/sistema/generales/giros-empresariales'); ?>" name="idG">
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label"><?php echo _('Mapa de experiencia de cliente') ?></label>
+						<div class="col-sm-8">
+							<select class="custom-select chain-select" data-url="<?= site_url('ajax/sistema/generales/mapa-experiencia-cliente'); ?>" data-parent="#giros" name="idCjm">
+							</select>
+						</div>
+					</div>
+				</form>
+				<hr>
+				<table class="table table-condensed table-hover table-striped tabla-ajax" data-url="<?php echo site_url('ajax/sistema/momento-verdad'); ?>" data-url-editar="<?php echo site_url('ajax/sistema/momento-verdad/consulta'); ?>" data-url-borrar="<?php echo site_url('ajax/sistema/preguntas/eliminar'); ?>">
+					<thead>
+						<tr>
+							<th data-column-id="id" data-type="numeric">id</th>
+							<th data-column-id="NombreG"><?php echo _('Giro Empresarial') ?></th>
+							<th data-column-id="NombreCjm"><?php echo _('MEC') ?></th>
+							<th data-column-id="Momento_verdad"><?php echo _('Momento Verdad') ?></th>
+							<th data-formatter="acciones" data-sortable="false"><?php echo _('Acciones') ?></th>
+						</tr>
+					</thead>
+				</table>
+				<hr>
+				<a href="<?php echo site_url('dashboard/catalogos/enfoques/nuevo'); ?>">
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+</div>
+<!-- end row -->
+
+<div class="modal fade show modal-detalles" id="nuevo" tabindex="-1" role="dialog" v-bind="familia">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h6><?php echo _('Nuevo registro') ?></h6>
+				<hr>
+				<form class="form-ajax" data-url="sistema/momento-verdad/nuevo" data-parsley-validate>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label required"><?php echo _('Giros empresariales') ?></label>
+						<div class="col-sm-8">
+							<select id="giro" class="custom-select chain-select" required="" data-url="<?= site_url('ajax/sistema/generales/giros-empresariales'); ?>" name="datos[idG]">
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label required"><?php echo _('Mapa de experiencia de cliente') ?></label>
+						<div class="col-sm-8">
+							<select class="custom-select chain-select" required="" data-url="<?= site_url('ajax/sistema/generales/mapa-experiencia-cliente'); ?>" data-parent="#giro" name="datos[idCjm]">
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label required"><?php echo _('Momento verdad') ?></label>
+						<div class="col-sm-8">
+							<input class="form-control" placeholder="" required="" name="datos[Momento]">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary float-right"><?php echo _('Guardar') ?></button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _('Cerrar') ?></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade show modal-detalles" id="EditarS" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h6><?php echo _('Editar pregunta') ?></h6>
+				<vp-Select></vp-Select>
+				<hr>
+				<form class="form-ajax" data-url="sistema/momento-verdad/editar" data-parsley-validate>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label required"><?php echo _('Giros empresariales') ?></label>
+						<div class="col-sm-8">
+							<select class="custom-select" v-model="idG" required="" name="datos[idG]">
+								<option><?php echo _('Seleccionar...') ?></option>
+								<option :value="giro.id" v-for="giro in giros">{{giro.Nombre}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label required"><?php echo _('Momento verdad') ?></label>
+						<div class="col-sm-8">
+							<select class="custom-select" v-model="idMv" required="" name="datos[idM]" >
+								<option><?php echo _('Seleccionar...') ?></option>
+								<option :value="mv.id" v-for="mv in mvs">{{mv.Nombre}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label required"><?php echo _('Pregunta') ?></label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" placeholder="" required="" name="datos[Pregunta]" :value="datos.Pregunta">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary float-right"><?php echo _('Guardar') ?></button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _('Cerrar') ?></button>
+					</div>
+					<input type="hidden" name="id" :value="datos.id" />
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

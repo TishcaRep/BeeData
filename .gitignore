@@ -1,0 +1,8 @@
+#Archivos de Sistema
+.DS_Store
+
+#Archivos Subidos
+archivos
+
+#Archivos de Configuración
+config/config.ini

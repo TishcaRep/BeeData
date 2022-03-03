@@ -1,0 +1,48 @@
+<?php global $sidebar_menu, $site_url, $ruta; ?>
+<div class="row">
+	<div class="col-sm-12">
+		<div class="page-title-box">
+			<div class="btn-group float-right">
+				<ol class="breadcrumb hide-phone p-0 m-0">
+					<li class="breadcrumb-item">
+						<a href="<?php echo site_url('dashbord'); ?>"><?php echo _('Inicio') ?></a>
+					</li>
+					<li class="breadcrumb-item active">
+						<?php echo _('Editar Credenciales') ?>
+					</li>
+				</ol>
+			</div>
+			<h4 class="page-title"><?php echo _('Editar Credenciales') ?></h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<div class="card m-b-30">
+			<div class="card-body">
+				<form class="form-ajax formpss" data-url="sistema/usuario/updatepwd" data-parsley-validate>
+					<div class="form-group row frgpass">
+						<label for="Contraseña">
+							<label class="col-form-label required">
+								<?php echo _('Contraseña') ?> </label>
+						</label>
+							<input id="password" class="form-control" type="password" required name="datos[password]">
+					</div>
+					<div class="form-group row frgpass">
+						<label for="Confirmar Contraseña">
+							<label class="col-form-label required">
+								<?php echo _('Confirmar Contraseña') ?> </label>
+						</label>
+							<input id="confirmar-password" class="form-control" type="password" data-parsley-equalto="#password" data-parsley-error-message="Las contraseñas no son iguales" required="" name="datos[password_c]">
+					</div>
+					<div class="clearfix">
+						<button type="submit" class="btn btn-primary float-right"><?php echo _('Guardar') ?></button>
+					</div>
+					<input type="hidden" name="datos[id]" value="<?= $usuario->id ?>">
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+</div>
+<!-- end row -->

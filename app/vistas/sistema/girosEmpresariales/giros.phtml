@@ -1,0 +1,94 @@
+<div class="row">
+	<div class="col-sm-12">
+		<div class="page-title-box">
+			<div class="btn-group float-right">
+				<ol class="breadcrumb hide-phone p-0 m-0">
+					<li class="breadcrumb-item">
+						<a href="<?php echo site_url('dashboard'); ?>"><?php echo _('Inicio') ?></a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="<?php echo site_url('dashboard/catalogos/'); ?>"><?php echo _('Catalogos') ?></a>
+					</li>
+					</li>
+					<li class="breadcrumb-item active">
+						<?php echo _('Giros Empresariales') ?>
+					</li>
+				</ol>
+			</div>
+			<h4 class="page-title"><?php echo _('Catalogo de giros empresariales') ?></h4>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<div class="card m-b-30">
+			<div class="card-body">
+				<h4><?php echo _('Catálogo de giros empresariales') ?></h4>
+				<hr>
+				<div class="m-b-30">
+					<button data-toggle="modal" data-target="#nuevo" type="button" class="btn btn-success waves-effect waves-light m-r-10 m-b-10 pull-right"><?php echo _('Nuevo registro') ?></button>
+				</div>
+				<br>
+				<hr>
+				<table class="table table-condensed table-hover table-striped tabla-ajax" data-url="<?php echo site_url('ajax/sistema/girosEmpresariales'); ?>" data-url-editar="<?php echo site_url('ajax/sistema/girosEmpresariales/consulta'); ?>"
+				  data-url-borrar="<?php echo site_url('ajax/sistema/girosEmpresariales/eliminar'); ?>">
+					<thead>
+						<tr>
+							<th data-column-id="id" data-type="numeric">id</th>
+							<th data-column-id="Nombre"><?php echo _('Giro') ?></th>
+							<th data-formatter="acciones" data-sortable="false"><?php echo _('Acciones') ?></th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- end col -->
+</div>
+<!-- end row -->
+<div class="modal fade show modal-detalles" id="nuevo" tabindex="-1" role="dialog" v-bind="familia">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h6><?php echo _('Nuevo registro') ?></h6>
+				<hr>
+				<form class="form-ajax" data-url="sistema/girosEmpresariales/nuevo" data-parsley-validate>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label required"><?php echo _('Giro Empresarial') ?></label>
+						<div class="col-sm-10">
+							<input class="form-control" placeholder="" required="" name="datos[Nombregiro]">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary float-right"><?php echo _('Guardar') ?></button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _('Cerrar') ?></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade show modal-detalles" id="Editar" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h6><?php echo _('Editar giro empresarial') ?></h6>
+				<hr>
+				<form class="form-ajax" data-url="sistema/girosEmpresariales/editar" data-parsley-validate>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label required"><?php echo _('Giro empresarial') ?></label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" placeholder="" required="" name="datos[Nombre]" :value="datos.Nombre">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-primary float-right"><?php echo _('Guardar') ?></input>
+						<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _('Cerrar') ?></button>
+					</div>
+					<input type="hidden" name="id" :value="datos.idCatalogoCiudad" />
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

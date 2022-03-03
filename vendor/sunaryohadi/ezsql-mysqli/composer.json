@@ -1,0 +1,23 @@
+{
+	"name": "sunaryohadi/ezsql-mysqli",
+	"description": "Fork ezSQL, just for mysqli. With additional prepare() function from WPdb",
+	"license": "LGPL",
+	"authors": [
+		{
+			"name": "Justin Vincent",
+			"email": "webmaster@justinvincent.com"
+		},
+		{
+			"name": "Sunaryo Hadi"
+		}
+],
+	"require": {
+		
+	},
+	"autoload": {
+		"classmap": [
+			"mysqli/ez_sql_mysqli.php",
+			"shared/ez_sql_core.php"
+		]
+	}
+}

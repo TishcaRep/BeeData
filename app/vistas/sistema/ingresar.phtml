@@ -1,0 +1,48 @@
+<?php global $site_url; ?>
+<div class="card">
+	<div class="card-body">
+
+		<h3 class="text-center mt-0 m-b-15"><a href="<?= site_url('dashboard') ?>" class="logo logo-admin"><img src="<?php echo $site_url; ?>/sistema/images/logo_svg.svg" alt="logo"></a></h3>
+
+		<div class="p-3">
+			<form class="form-horizontal m-t-20 form-login" data-url="sistema/usuarios/ingresar" data-parsley-validate>
+
+				<div class="form-group row">
+					<div class="col-12">
+						<input class="form-control" type="text" required="" placeholder="Usuario" name="usuario">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<div class="col-12">
+						<input class="form-control" type="password" required="" placeholder="Contraseña" name="pass">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<div class="col-12">
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="recordarme" value="1" name="recordarme">
+							<label class="custom-control-label" for="recordarme"><?php echo _('Recordarme') ?></label>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group text-center row m-t-20">
+					<div class="col-12">
+						<button class="btn btn-primary btn-block waves-effect waves-light" type="submit">
+							<?php echo _('Ingresar') ?>
+						</button>
+					</div>
+				</div>
+
+				<div class="form-group m-t-10 mb-0 row">
+					<div class="col-sm-7 m-t-20">
+						<a href="<?php echo site_url('administracion/usuarios/recuperar-password'); ?>" class="text-muted"><i class="mdi mdi-lock"></i> <small>¿ Perdiste tu contraseña ?</small></a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>

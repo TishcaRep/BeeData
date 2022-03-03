@@ -1,0 +1,157 @@
+<?php global $site_url; ?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+		<title>Bee Data | <?php echo !empty($GLOBALS['titulo']) ? $GLOBALS['titulo'] : ''; ?></title>
+		<link rel="shortcut icon" href="<?php echo $site_url; ?>/sitio/images/favicon/favicon.ico">
+		<meta name="apple-mobile-web-app-title" content="TekoAdmin">
+		<meta name="application-name" content="Teko Admin">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#ffffff">
+		<meta content="Sistema de Administración" name="description" />
+		<meta content="Bee Data" name="author" />
+
+
+
+		<!-- ESTILOS THEME -->
+		<link rel="icon" href="<?php echo $site_url; ?>/sistema/images/icon_web.png">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+		<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css" rel="stylesheet" type="text/css">
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/data.js"></script>
+		<script src="https://code.highcharts.com/modules/series-label.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/modules/export-data.js"></script>
+		 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+
+		<!-- Additional files for the Highslide popup effect -->
+		<script src="https://www.highcharts.com/media/com_demo/js/highslide-full.min.js"></script>
+		<script src="https://www.highcharts.com/media/com_demo/js/highslide.config.js" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="https://www.highcharts.com/media/com_demo/css/highslide.css" />
+    <link href="<?php echo $site_url; ?>/sistema/assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $site_url; ?>/sistema/assets/all-plugins-basic.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $site_url; ?>/sistema/assets/css/style.css" rel="stylesheet" type="text/css">
+
+		<!-- ESTILOS PROPIOS -->
+		<link rel="stylesheet" type="text/css" href="<?php echo $site_url; ?>/sistema/style.css">
+
+	</head>
+	<body class="fixed-left">
+
+        <!-- Loader -->
+        <div id="preloader"><div id="status"><div class="spinner"></div></div></div>
+        <!-- Begin page -->
+        <div id="wrapper">
+			<!-- BEGIN SIDEBPANEL-->
+			<?php echo $include('sistema/menu'); ?>
+			<!-- END SIDEBAR -->
+
+			<!-- Start right Content here -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <!-- Top Bar Start -->
+                    <div class="topbar">
+                        <nav class="navbar-custom">
+                            <ul class="list-inline float-right mb-0">
+                                <li class="list-inline-item dropdown notification-list">
+                                    <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
+                                       aria-haspopup="false" aria-expanded="false">
+                                        <img src="<?php echo $site_url; ?>/sistema/images/profile.png" alt="Mi Usuario" class="rounded-circle">
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                        <!-- item-->
+                                        <div class="dropdown-item noti-title">
+                                            <h5>Bienvenido</h5>
+                                        </div>
+                                        <a class="dropdown-item" href="<?php echo site_url('dashboard/usuario/'); ?>"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Perfil</a>
+                                        <div class="dropdown-divider"></div>
+																				<a class="dropdown-item" href="<?php echo site_url('dashboard/usuario/editar'); ?>"><i class="fas fa-key m-r-5 text-muted"></i> Cambiar Contraseña</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="<?php echo site_url('dashboard/cerrar-sesion'); ?>"><i class="mdi mdi-logout m-r-5 text-muted"></i> Cerrar Sesión</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-inline menu-left mb-0">
+                                <li class="float-left">
+                                    <button class="button-menu-mobile open-left waves-light waves-effect">
+                                        <i class="mdi mdi-menu"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </nav>
+                    </div>
+                    <!-- Top Bar End -->
+                    <div class="page-content-wrapper ">
+                        <div class="container-fluid">
+                            <?= $this->content; ?>
+                        </div><!-- container -->
+                    </div> <!-- Page content Wrapper -->
+                </div> <!-- content -->
+                <footer class="footer">
+                	<div class="page-content-wrapper">
+                		<img src="<?php echo $site_url; ?>/sistema/images/logo_footer.png">
+                    <span>© <?= date('Y'); ?> | Derechos Reservados <a href="https://tekoestudio.com">LAMS IT</a>.</span>
+                	</div>
+                </footer>
+            </div>
+            <!-- End Right content here -->
+        </div>
+        <!-- END wrapper -->
+        <!-- Loading App -->
+		<div id="loading-app" v-if="activo" v-cloak>
+		    <div class="cont-loading">
+		        <img src="<?php echo site_url('sistema/images/loader.svg'); ?>" alt="Cargando" class="loader" />
+		        <div class="mensaje" v-html="mensaje"></div>
+		    </div>
+		</div>
+
+	<!-- SCRIPTS PAGES -->
+	<script type="text/javascript"> var ajaxurl = "<?php echo $site_url,'/ajax'; ?>"; var siteurl = "<?php echo $site_url;  ?>"; </script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo $site_url; ?>/sistema/assets/all-plugins-basic.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+	<script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
+	<script type="text/javascript" src="<?php echo $site_url; ?>/sistema/js/conekta.js"></script>
+
+	<script type="text/javascript" src="<?php echo $site_url; ?>/sistema/assets/js/app.js"></script>
+	<script type="text/javascript" src="<?php echo $site_url; ?>/sistema/js/directivas.js"></script>
+	<script type="text/javascript" src="<?php echo $site_url; ?>/sistema/js/loadingApp.js"></script>
+	<script type="text/javascript" src="<?php echo $site_url; ?>/sistema/js/repeaterApp.js"></script>
+	<script type="text/javascript" src="<?php echo $site_url; ?>/sistema/js/tablas.js"></script>
+	<script type="text/javascript" src="<?php echo $site_url; ?>/sistema/js/wizzard.js"></script>
+	<script type="text/javascript" src="<?php echo $site_url; ?>/sistema/js/actions.js"></script>
+	<script type="text/javascript" src="<?php echo $site_url; ?>/sistema/js/apps.js"></script>
+
+<!--
+	<script>
+	function myMap() {
+	var mapProp= {
+	  center:new google.maps.LatLng(21.922,-102.299),
+	  zoom:5,
+	};
+	var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	}
+	</script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuUzmfJLTxJpQslOcziDcHjQ1aqutaD-8&callback=myMap"></script>
+-->
+
+	<script>
+      $('#summernote').summernote({
+        // placeholder: 'Hello bootstrap 4',
+        tabsize: 2,
+        height: 100
+      });
+    </script>
+
+	</body>
+</html>

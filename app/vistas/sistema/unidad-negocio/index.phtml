@@ -1,0 +1,382 @@
+<div class="row">
+	<div class="col-sm-12">
+		<div class="page-title-box">
+			<div class="btn-group float-right">
+				<ol class="breadcrumb hide-phone p-0 m-0">
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard') ?>">
+							<?= _('Inicio')?></a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard/catalogos/') ?>">
+							<?= _('Unidades')?></a>
+					</li>
+					<li class="breadcrumb-item active">
+						<?= _('Lista Unidades')?>
+					</li>
+				</ol>
+			</div>
+			<h4 class="page-title">
+				<?= _('Mis unidades de negocio')?>
+			</h4>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">
+					<?php echo _('Lista de unidades de negocio') ?>
+				</h4>
+				<hr>
+				<div class="m-b-30">
+					<button class="btn btn-success waves-effect waves-light m-r-10 m-b-10 pull-right" data-toggle="modal" onclick="NuevaUnidad.Show()"><i class="fas fa-plus-circle"></i> Agregar</button>
+				</div>
+				<br>
+				<hr>
+				<table class="table table-condensed table-hover table-striped tabla-ajax" data-url="<?= site_url('ajax/sistema/unidad-negocio'); ?>"  data-url-editar="<?= site_url('ajax/sistema/unidad-negocio/consultar'); ?>" data-url-borrar="<?= site_url('ajax/sistema/unidad-negocio/eliminar'); ?>">
+					<thead>
+						<tr>
+							<th data-align="center" data-column-id="id" data-type="numeric">id</th>
+							<th data-align="center" data-column-id="Nombre"><?= _('Nombre de unidad')?></th>
+							<th data-align="center" data-column-id="tipo"><?= _('Cuenta')?></th>
+							<th data-align="center" data-formatter="acciones" data-sortable="false"><?= _('Acciones')?></th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div id="NuevaUnidad" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					<?=_('Agregar unidad de negocio')?>
+				</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group row twizzard">
+					<div class="wizard-form">
+						<div class="container">
+							<div class="row">
+								<section>
+									<div class="wizard">
+										<div class="wizard-inner">
+											<div class="connecting-line"></div>
+											<ul class="nav nav-tabs" role="tablist">
+												<li role="presentation" class="active">
+													<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="<?=_('Tipo de sucursal')?>">
+														<span class="round-tab">
+															<i class="fas fa-building"></i>
+														</span>
+													</a>
+												</li>
+
+												<li role="presentation" class="disabled">
+													<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="<?=_('Datos de negocio')?>">
+														<span class="round-tab">
+															<i class="fas fa-user-tie"></i>
+														</span>
+													</a>
+												</li>
+												<li role="presentation" class="disabled">
+													<a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="<?=_('Datos unidad de facturación')?>">
+														<span class="round-tab">
+															<i class="fas fa-user-edit"></i>
+														</span>
+													</a>
+												</li>
+											</ul>
+										</div>
+
+										<form class="form-ajax" data-url="/sistema/unidad-negocio/nuevo" data-parsley-validate>
+											<div class="tab-content">
+												<div class="tab-pane active step1_wiz" id="step1">
+													<h6 class="titulo-modal">
+														<?=_('Nombre de la Unidad')?>
+													</h6>
+													<div id="nom_unidad_wizard">
+														<label class="col-form-label required">
+															<?=_('Denominacion o razón social')?></label>
+														<input class="form-control" required="" v-model="Denominacion" name="datos[Nombre]" type="text" required="" >
+													</div>
+													<div v-if="sucursales!=null">
+														<h6 class="titulo-modal">
+															<?=_('Tipo de unidad')?>
+														</h6>
+														<div class="modal-container" >
+															<div id="tipo-uni">
+																<label class="containerbx">
+																	<?=_('1. Sucursal')?>
+																	<input type="radio" name="tipo"v-model="ifsucursal" v-bind:value="true" checked>
+																	<span class="checkmark"></span>
+																</label>
+																<select v-if="ifsucursal" class="custom-select" name="datos[Sucursal]" required ="" id="NombreSucursal" >
+																	<option value="">Seleccionar...</option>
+																	<option v-for="sucursal in sucursales" :value="sucursal.id">{{sucursal.Nombre}}</option>
+																</select>
+															</div>
+															<br>
+															<label class="containerbx">
+																<?=_('2. Unidad de negocio diferente')?>
+																<input type="radio" name="tipo" v-model="ifsucursal" v-bind:value="false">
+																<span class="checkmark"></span>
+															</label>
+														</div>
+													</div>
+													<ul class="list-inline pull-right">
+														<li><button type="button" class="btn btn-primary next-step">
+																<?=_('Continuar')?></button></li>
+													</ul>
+												</div>
+												<div class="tab-pane" role="tabpanel" id="step2">
+													<h6 class="titulo-modal">
+														<?=_('Datos de la unidad de negocio')?>
+													</h6>
+													<div class="modal-container">
+														<div class="form-no-text">
+															<div class="form-group required">
+																<div class="col-xs-6">
+																	<label for="last_name">
+																		<label class="col-form-label required">
+																			<?php echo _('Giro') ?></label>
+																	</label>
+																	<select class="custom-select chain-select" required ="" data-url="<?= site_url('ajax/sistema/generales/giros-empresariales');?>" name="datos[Giro]">
+																	</select>
+																</div>
+															</div>
+															<label>
+																<label class="col-form-label required">
+																	<?php echo _('Logo') ?></label>
+															</label>
+															<input type="file" class="dropify" data-height="100" />
+															<label>
+																<label class="col-form-label required">
+																	<?php echo _('Localización') ?></label>
+															</label>
+															<div id="googleMap" style="width:100%;height:250px;"></div>
+														</div>
+														<div id="form-text-only">
+															<div class="form-group required">
+																<div class="col-xs-6">
+																	<label>
+																		<label class="col-form-label required">
+																			<?php echo _('Denominación') ?></label>
+																	</label>
+																	<input type="text"  required ="" class="form-control" disabled  :value="Denominacion">
+																</div>
+															</div>
+															<div class="form-group required">
+																<div class="col-xs-6">
+																	<label for="last_name">
+																		<label class="col-form-label required">
+																			<?php echo _('Codigo Postal') ?></label>
+																	</label>
+																	<input type="text" required ="" class="form-control" name="datos[CodigoPostal]"  @KeyUp="ActValues($event)" value="">
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label>
+																		<label class="col-form-label required">
+																			<?php echo _('Estado') ?></label>
+																	</label>
+																	<input type="text" class="form-control" disabled name="datos[Estado]" :value="Estado.NameE">
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label for="phone">
+																		<label class="col-form-label required">
+																			<?php echo _('Municipio') ?></label>
+																	</label>
+																	<input type="text" disabled class="form-control" name="datos[Municipio]" :value="Estado.NameM">
+																</div>
+															</div>
+															<div class="form-group required">
+																<div class="col-xs-6">
+																	<label for="email">
+																		<label class="col-form-label required">
+																			<?php echo _('Colonia') ?></label>
+																	</label>
+																</div>
+																<select class="form-control" required =""  name="datos[Colonia]">
+																	<option>Seleccionar...</option>
+																	<option :value="Colonia.Nombre" v-for="Colonia in Colonias">{{Colonia.Nombre}}</option>
+																</select>
+															</div>
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label for="last_name">
+																		<label class="col-form-label required">
+																			<?php echo _('Calle') ?></label>
+																	</label>
+																	<input type="text" required ="" class="form-control" name="datos[Calle]" value="">
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label for="phone">
+																		<label class="col-form-label required">
+																			<?php echo _('Número interior') ?></label>
+																	</label>
+																	<input type="text" required ="" class="form-control" name="datos[NumInt]" value="">
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label for="email">
+																		<label class="col-form-label required">
+																			<?php echo _('Número exterior') ?></label>
+																	</label>
+																	<input type="text" class="form-control" name="datos[NumExt]" value="">
+																</div>
+															</div>
+														</div>
+													</div>
+													<ul class="list-inline pull-right">
+														<li><button type="button" class="btn btn-default prev-step">
+																<?php echo _('Retroceder') ?></button></li>
+														<li><button type="button" class="btn btn-primary next-step">
+																<?php echo _('Continuar') ?></button></li>
+													</ul>
+												</div>
+												<div class="tab-pane" role="tabpanel" id="step3">
+													<h6 class="titulo-modal">
+														<?php echo _('Datos de facturación') ?>
+													</h6>
+													<div id="fact">
+														<div id="dfact" v-if="sucursales!=null">
+															<label class="containerbx">
+																<?php echo _('Distintos datos de facturación') ?>
+																<input type="radio" name="facturacion" v-model="disabled" v-bind:value="false" checked>
+																<span class="checkmark"></span>
+															</label>
+															<div id="chkselect" >
+																<label class="containerbx">
+																	<?php echo _('Mismos datos de:') ?>
+																	<input type="radio" name="facturacion" v-model="disabled" v-bind:value="true">
+																	<span class="checkmark"></span>
+																</label>
+																<select class="custom-select" id="NombreSucursal" name="datosf[facturacion]" >
+																	<option>Seleccionar...</option>
+																	<option v-for="sucursal in sucursales"  :value="sucursal.id">{{sucursal.Nombre}}</option>
+																</select>
+															</div>
+														</div>
+														<div id="form-text-only">
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label for="last_name">
+																		<label class="col-form-label required">
+																			<?php echo _('Denominación') ?></label>
+																	</label>
+																	<input type="text" class="form-control" :disabled="disabled" name="datosf[Nombre]" value="">
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label for="last_name">
+																		<label class="col-form-label required">
+																			<?php echo _('RFC') ?></label>
+																	</label>
+																	<input type="text" class="form-control" :disabled="disabled" name="datosf[rfc]" value="">
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label for="last_name">
+																		<label class="col-form-label required">
+																			<?php echo _('Codigo Postal') ?></label>
+																	</label>
+																	<input type="text" class="form-control" :disabled="disabled" name="datosf[CodigoPostal]" @KeyUp="ActValuesf($event)" value="">
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label>
+																		<label class="col-form-label required">
+																			<?php echo _('Estado') ?></label>
+																	</label>
+																	<input type="text" class="form-control" disabled name="datosf[Estado]" :value="Estadof.NameE">
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label for="phone">
+																		<label class="col-form-label required">
+																			<?php echo _('Municipio') ?></label>
+																	</label>
+																	<input type="text" disabled class="form-control" name="datosf[Municipio]" :value="Estadof.NameM">
+																</div>
+															</div>
+															<div class="form-group required">
+																<div class="col-xs-6">
+																	<label for="email">
+																		<label class="col-form-label required">
+																			<?php echo _('Colonia') ?></label>
+																	</label>
+																</div>
+																<select class="form-control" required ="":disabled="disabled"  name="datosf[Colonia]">
+																	<option>Seleccionar...</option>
+																	<option :value="Coloniaf.Nombre" v-for="Coloniaf in Coloniasf">{{Coloniaf.Nombre}}</option>
+																</select>
+															</div>
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label for="last_name">
+																		<label class="col-form-label required">
+																			<?php echo _('Calle') ?></label>
+																	</label>
+																	<input type="text" class="form-control" :disabled="disabled" name="datosf[calle]" value="">
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label for="phone">
+																		<label class="col-form-label required">
+																			<?php echo _('Número interior') ?></label>
+																	</label>
+																	<input type="text" class="form-control" :disabled="disabled" name="datosf[NumInt]" value="">
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="col-xs-6">
+																	<label for="email">
+																		<label class="col-form-label required">
+																			<?php echo _('Número exterior') ?></label>
+																	</label>
+																	<input type="text" class="form-control" :disabled="disabled" name="datosf[NumExt]" value="">
+																</div>
+															</div>
+														</div>
+													</div>
+													<ul class="list-inline pull-right">
+														<li><button type="button" class="btn btn-default prev-step">
+																<?php echo _('Retroceder') ?>
+															</button>
+														</li>
+														<li><input type="submit" class="btn btn-primary next-step" value="<?php echo _('Terminar') ?>"></input></li>
+													</ul>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</form>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

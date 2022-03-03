@@ -1,0 +1,60 @@
+<?php global $site_url; ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Beedata |
+        <?php echo !empty($GLOBALS['titulo']) ? $GLOBALS['titulo'] : ''; ?>
+    </title>
+    <link rel="shortcut icon" href="<?php echo $site_url; ?>/sistema/images/icon_web.png">
+    <meta content="Ingresar" name="description" />
+    <meta content="Bee Data" name="author" />
+
+    <!-- ESTILOS THEME -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $site_url; ?>/sistema/assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $site_url; ?>/sistema/assets/css/style.css" rel="stylesheet" type="text/css">
+
+    <!-- ESTILOS PROPIOS -->
+    <link rel="stylesheet" type="text/css" href="<?php echo $site_url; ?>/sistema/style.css">
+
+</head>
+
+<body class="fixed-left">
+
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <!-- Begin page -->
+    <div class="accountbg"></div>
+    <div class="wrapper-page">
+        <?= $this->content; ?>
+    </div>
+
+    <!-- Loading App -->
+    <div id="loading-app" v-if="activo" v-cloak>
+        <div class="cont-loading">
+            <img src="<?php echo site_url('sistema/images/loader.svg'); ?>" alt="Cargando" class="loader" />
+            <div class="mensaje" v-html="mensaje"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var ajaxurl = "<?php echo $site_url,'/ajax'; ?>";
+        var siteurl = "<?php echo $site_url;  ?>";
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript" src="<?php echo $site_url; ?>/sistema/assets/all-plugins-basic.min.js"></script>
+    <script type="text/javascript" src="<?php echo $site_url; ?>/sistema/assets/js/app.js"></script>
+    <script type="text/javascript" src="<?php echo $site_url; ?>/sistema/js/loadingApp.js"></script>
+    <script type="text/javascript" src="<?php echo $site_url; ?>/sistema/js/login.js"></script>
+</body>
+
+</html>

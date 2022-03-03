@@ -1,0 +1,151 @@
+<div class="sidebar-right ">
+	<div class="headersidebar">
+			<i class="fas fa-tasks"></i>
+			<span class="headtitle-sidebar"><?= _('Resultados de campañas')?></span>
+	</div>
+	<ul class="optionsidebar listdecotationnone scrollmodal">
+		<li>
+			<h6 class="title-sidebar">
+				<?= _('Segmentación Unidad de Negocio')?>
+			</h6>
+			<select class="form-control" id="">
+				<option>
+					<?=_('Principal')?>
+				</option>
+				<option>
+					<?=_('')?>
+				</option>
+				<option>
+					<?=_('')?>
+				</option>
+				<option>
+					<?=_('')?>
+				</option>
+				<option>
+					<?=_('')?>
+				</option>
+			</select>
+		</li>
+		<li>
+			<h6 class="title-sidebar">
+				<?= _('Comparativo entre Campañas')?>
+			</h6>
+			<div class="buttonagregaraccion">
+				<button class="btn btn-info bgblue waves-effect waves-light m-r-10 m-b-10">
+					<i class="fas fa-plus-circle"></i> <?= _('Agregar') ?>
+				</button>
+			</div>
+			<ul class="campanasidebar listdecotationnone">
+				<li>
+					<span><?= _('Campaña 1')?></span>
+					<select class="form-control" id="">
+						<option>
+							<?=_('Principal')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+					</select>
+				</li>
+				<li>
+					<span><?= _('Campaña 1')?></span>
+					<select class="form-control" id="">
+						<option>
+							<?=_('Principal')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+					</select>
+				</li>
+			</ul>
+
+
+		</li>
+		<li>
+			<h6 class="title-sidebar">
+				<?= _('Segmentación Momento de la verdad')?>
+			</h6>
+			<div class="checkboxsidebar">
+				<label class="containercheck">Momento de verdad 1
+					<input type="checkbox" >
+					<span class="checkmarkcheck"></span>
+				</label>
+				<label class="containercheck">Momento de verdad 1
+					<input type="checkbox" >
+					<span class="checkmarkcheck"></span>
+				</label>
+			</div>
+		</li>
+	</ul>
+
+	<div class="indicesideright">
+		<i class="fas fa-chevron-right"></i>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="page-title-box">
+			<div class="btn-group float-right">
+				<ol class="breadcrumb hide-phone p-0 m-0">
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard') ?>">
+							<?= _('Inicio')?></a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard/analisis/') ?>">
+							<?= _('Análisis de Capañas')?></a>
+					</li>
+					<li class="breadcrumb-item active">
+						<?= _('Análisis de datos')?>
+					</li>
+				</ol>
+			</div>
+			<h4 class="page-title">
+				<?= _('Análisis de datos')?>
+			</h4>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+
+				<h4 class="card-title">
+					<?= _('Análisis de datos')?>
+				</h4>
+				<hr>
+
+				<div id="graphcontainter" style="max-width: 1000px; height: 400px; margin: 2% auto"></div>
+				<div id="graphcontainter1" style="max-width: 1000px; height: 400px; margin: 2% auto"></div>
+
+				<div class="panel-body lideres-censistas">
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,492 @@
+<div class="sidebar-right ">
+	<div class="headersidebar">
+			<i class="fas fa-clipboard-check"></i>
+			<span class="headtitle-sidebar"><?= _('Análisis de datos de clientes')?></span>
+	</div>
+	<ul class="optionsidebar listdecotationnone scrollmodal">
+		<li>
+			<h6 class="title-sidebar">
+				<?= _('Segmentación Unidad de Negocio')?>
+			</h6>
+			<select class="form-control" id="">
+				<option>
+					<?=_('Principal')?>
+				</option>
+				<option>
+					<?=_('')?>
+				</option>
+				<option>
+					<?=_('')?>
+				</option>
+				<option>
+					<?=_('')?>
+				</option>
+				<option>
+					<?=_('')?>
+				</option>
+			</select>
+		</li>
+
+		<li>
+			<h6 class="title-sidebar">
+				<?= _('Segmentación Campaña')?>
+			</h6>
+			<ul class="campanasidebar listdecotationnone">
+				<!-- <li>
+					<span><?= _('Campaña')?></span>
+					<select class="form-control" id="">
+						<option>
+							<?=_('Principal')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+					</select> -->
+					<ul class="infocampana listdecotationnone nomarginbottom">
+						<li>
+							<h6>
+								<?=_('Campaña')?>
+							</h6>
+						</li>
+						<li>
+							<h6>
+								<?=_('Encuestas')?>
+							</h6>
+						</li>
+						<li>
+							<h6>
+								<?=_('Tipo campaña')?>
+							</h6>
+						</li>
+						<div class="clearfix"></div>
+					</ul>
+					<select class="form-control marginbottom" id="">
+						<option>
+							<?=_('Junio - 1000 - Presencial')?>
+						</option>
+						<option>
+							<?=_('Junio - 1000 - Presencial')?>
+						</option>
+						<option>
+							<?=_('Junio - 1000 - Presencial')?>
+						</option>
+						<option>
+							<?=_('Junio - 1000 - Presencial')?>
+						</option>
+						<option>
+							<?=_('Junio - 1000 - Presencial')?>
+						</option>
+					</select>
+
+				</li>
+				<li>
+					<ul class="infocampana infocampana2 listdecotationnone nomarginbottom">
+						<li>
+							<h6>
+								<?=_('Momentos verdad')?>
+							</h6>
+						</li>
+						<li>
+							<h6>
+								<?=_('Respuestas')?>
+							</h6>
+						</li>
+						<div class="clearfix"></div>
+					</ul>
+					<ul class="opcionesMEC listdecotationnone">
+						<li>
+							<div class="headopcionesMEC">
+								<i class="fas fa-plus"></i>
+								<label class="containercheck">
+									<input type="checkbox" >
+									<span class="checkmarkcheck"></span>
+								</label>
+								<p><?=_('MEC Reservación')?> | 90%</p>
+								<div class="clearfix"></div>
+							</div>
+							<ul class="MVoptionparent listdecotationnone">
+								<li>
+									<div class="headopcionesMEC">
+										<i class="fas fa-plus"></i>
+										<label class="containercheck">
+											<input type="checkbox" >
+											<span class="checkmarkcheck"></span>
+										</label>
+										<p><?=_('MV1')?> | 90%</p>
+										<div class="clearfix"></div>
+									</div>
+									<ul class="MVoptionchild listdecotationnone">
+										<li>
+											<label class="containercheck"><?=_('Muy positivos')?> (500)
+												<input type="checkbox" >
+												<span class="checkmarkcheck"></span>
+											</label>
+										</li>
+										<li>
+											<label class="containercheck"><?=_('Positivos')?> (500)
+												<input type="checkbox" >
+												<span class="checkmarkcheck"></span>
+											</label>
+										</li>
+										<li>
+											<label class="containercheck"><?=_('Neutro')?> (500)
+												<input type="checkbox" >
+												<span class="checkmarkcheck"></span>
+											</label>
+										</li>
+										<li>
+											<label class="containercheck"><?=_('Negativos')?> (500)
+												<input type="checkbox" >
+												<span class="checkmarkcheck"></span>
+											</label>
+										</li>
+										<li>
+											<label class="containercheck"><?=_('Muy negativos')?> (500)
+												<input type="checkbox" >
+												<span class="checkmarkcheck"></span>
+											</label>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<div class="headopcionesMEC">
+										<i class="fas fa-plus"></i>
+										<label class="containercheck">
+											<input type="checkbox" >
+											<span class="checkmarkcheck"></span>
+										</label>
+										<p><?=_('MV2')?> | 90%</p>
+										<div class="clearfix"></div>
+									</div>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<div class="headopcionesMEC">
+								<i class="fas fa-plus"></i>
+								<label class="containercheck">
+									<input type="checkbox" >
+									<span class="checkmarkcheck"></span>
+								</label>
+								<p><?=_('MEC Estancia')?> | 70%</p>
+								<div class="clearfix"></div>
+							</div>
+							<ul class="MVoptionparent listdecotationnone">
+								<li>
+									<div class="headopcionesMEC">
+										<i class="fas fa-plus"></i>
+										<label class="containercheck">
+											<input type="checkbox" >
+											<span class="checkmarkcheck"></span>
+										</label>
+										<p><?=_('MV1')?> | 90%</p>
+										<div class="clearfix"></div>
+									</div>
+								</li>
+								<li>
+									<div class="headopcionesMEC">
+										<i class="fas fa-plus"></i>
+										<label class="containercheck">
+											<input type="checkbox" >
+											<span class="checkmarkcheck"></span>
+										</label>
+										<p><?=_('MV2')?> | 90%</p>
+										<div class="clearfix"></div>
+									</div>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<div class="headopcionesMEC">
+								<i class="fas fa-plus"></i>
+								<label class="containercheck">
+									<input type="checkbox" >
+									<span class="checkmarkcheck"></span>
+								</label>
+								<p><?=_('MEC Estancia')?> | 70%</p>
+								<div class="clearfix"></div>
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+
+		<li>
+			<h6 class="title-sidebar">
+				<?= _('Segmentación Demográfica')?>
+			</h6>
+			<ul class="campanasidebar listdecotationnone">
+				<li>
+					<h6 class="subtitle-sidebar">
+						<?= _('Género')?>
+					</h6>
+					<div class="checkboxsidebar">
+						<label class="containercheck"><?=_('Masculino')?> (800)
+							<input type="checkbox" >
+							<span class="checkmarkcheck"></span>
+						</label>
+						<label class="containercheck"><?=_('Femenino')?> (200)
+							<input type="checkbox" >
+							<span class="checkmarkcheck"></span>
+						</label>
+					</div>
+				</li>
+				<li>
+					<h6 class="subtitle-sidebar">
+						<?= _('Rango de Edad')?>
+					</h6>
+					<ul class="rangoedad listdecotationnone">
+						<li>
+							<?= _('De')?>
+						</li>
+						<li>
+							<input type="text" name="" value="">
+						</li>
+						<li>
+							<?= _('Hasta')?>
+						</li>
+						<li>
+							<input type="text" name="" value="">
+						</li>
+					</ul>
+					<div class="clearfix"></div>
+				</li>
+				<li>
+					<h6 class="subtitle-sidebar">
+						<?= _('Mes de Cumpleaños')?>
+					</h6>
+					<select class="form-control" id="">
+						<option>
+							<?=_('Enero')?>
+						</option>
+						<option>
+							<?=_('Febrero')?>
+						</option>
+						<option>
+							<?=_('Marzo')?>
+						</option>
+						<option>
+							<?=_('Abril')?>
+						</option>
+						<option>
+							<?=_('Mayo')?>
+						</option>
+						<option>
+							<?=_('Junio')?>
+						</option>
+						<option>
+							<?=_('Julio')?>
+						</option>
+						<option>
+							<?=_('Agosto')?>
+						</option>
+						<option>
+							<?=_('Septiembre')?>
+						</option>
+						<option>
+							<?=_('Octubre')?>
+						</option>
+						<option>
+							<?=_('Noviembre')?>
+						</option>
+						<option>
+							<?=_('Diciembre')?>
+						</option>
+					</select>
+				</li>
+
+			</ul>
+		</li>
+		<li>
+			<h6 class="title-sidebar">
+				<?= _('Segmentación Geográfica')?>
+			</h6>
+			<ul class="campanasidebar listdecotationnone">
+				<li>
+					<span><?= _('Estado')?></span>
+					<select class="form-control" id="">
+						<option>
+							<?=_('Principal')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+					</select>
+				</li>
+				<li>
+					<span><?= _('Municipio')?></span>
+					<select class="form-control" id="">
+						<option>
+							<?=_('Principal')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+					</select>
+				</li>
+				<li>
+					<span><?= _('Colonia')?></span>
+					<select class="form-control" id="">
+						<option>
+							<?=_('Principal')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+						<option>
+							<?=_('')?>
+						</option>
+					</select>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<h6 class="title-sidebar">
+				<?= _('Segmentación Fidelidad de la Marca')?>
+			</h6>
+			<div class="checkboxsidebar">
+				<label class="containercheck"><?=_('Primera vez')?> (400)
+					<input type="checkbox" >
+					<span class="checkmarkcheck"></span>
+				</label>
+				<label class="containercheck"><?=_('1 vez a la semana')?> (200)
+					<input type="checkbox" >
+					<span class="checkmarkcheck"></span>
+				</label>
+				<label class="containercheck"><?=_('1 vez cada 15 días')?> (800)
+					<input type="checkbox" >
+					<span class="checkmarkcheck"></span>
+				</label>
+				<label class="containercheck"><?=_('1 vez al mes')?> (200)
+					<input type="checkbox" >
+					<span class="checkmarkcheck"></span>
+				</label>
+				<label class="containercheck"><?=_('1 vez cada 3 meses')?> (800)
+					<input type="checkbox" >
+					<span class="checkmarkcheck"></span>
+				</label>
+				<label class="containercheck"><?=_('1 vez cada 6 mes')?> (200)
+					<input type="checkbox" >
+					<span class="checkmarkcheck"></span>
+				</label>
+				<label class="containercheck"><?=_('1 vez al año')?> (800)
+					<input type="checkbox" >
+					<span class="checkmarkcheck"></span>
+				</label>
+			</div>
+		</li>
+		<li>
+			<h6 class="title-sidebar">
+				<?= _('Análisis')?>
+			</h6>
+			<div class="checkboxsidebar">
+				<label class="containerbx"> <?= _('Gráfica')?>
+					<input type="radio" name="tipo_analisis" value="grafica" >
+					<span class="checkmark"></span>
+				</label>
+				<label class="containerbx"> <?= _('Tabla')?>
+					<input type="radio" name="tipo_analisis" value="tabla" checked >
+					<span class="checkmark"></span>
+				</label>
+				<label class="containerbx"> <?= _('Mapa')?>
+					<input type="radio" name="tipo_analisis" value="mapa" >
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</li>
+	</ul>
+
+	<div class="indicesideright">
+		<i class="fas fa-chevron-right"></i>
+	</div>
+</div>
+<!--  -->
+
+
+
+
+
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="page-title-box">
+			<div class="btn-group float-right">
+				<ol class="breadcrumb hide-phone p-0 m-0">
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard') ?>">
+							<?= _('Inicio')?></a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard/refile/') ?>">
+							<?= _('Campañas REFILE')?></a>
+					</li>
+					<li class="breadcrumb-item active">
+						<?= _('Nueva Campaña')?>
+					</li>
+				</ol>
+			</div>
+			<h4 class="page-title">
+				<?= _('Nueva Campaña')?>
+			</h4>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+
+				<h4 class="card-title">
+					<?= _('Nueva Campaña')?>
+				</h4>
+				<hr>
+
+				<!-- <div id="graphcontainter" style="max-width: 1000px; height: 400px; margin: 2% auto"></div>
+				<div id="graphcontainter1" style="max-width: 1000px; height: 400px; margin: 2% auto"></div> -->
+
+				<div class="panel-body lideres-censistas">
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

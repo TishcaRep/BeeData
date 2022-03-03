@@ -1,0 +1,45 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    background-color: #09334f;
+}
+
+.logo {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    padding: 20px 0;
+    max-width: 200px;
+}
+
+.input-field .helper-text {
+    position: relative;
+    min-height: 18px;
+    display: block;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.54);
+    margin-top: -15px;
+    margin-bottom: 10px;
+}
+
+ul.stepper.horizontal {
+    min-height: calc(100vh - 130px);
+}
+
+ul.stepper.horizontal .step-actions {
+    padding: 0 !important;
+    position: relative;
+    margin-bottom: 24px;
+    float: right;
+}
+
+.card .card-content {
+    padding: 24px 24px 0 24px;
+}
+
+ul.stepper.horizontal .step-title {
+    max-width: 300px;
+}

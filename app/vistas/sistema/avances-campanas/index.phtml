@@ -1,0 +1,231 @@
+<div class="row">
+	<div class="col-sm-12">
+		<div class="page-title-box">
+			<div class="btn-group float-right">
+				<ol class="breadcrumb hide-phone p-0 m-0">
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard') ?>">
+							<?= _('Inicio')?></a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard/campanas/') ?>">
+							<?= _('Campañas')?></a>
+					</li>
+					<li class="breadcrumb-item active">
+						<?= _('Avances de Campañas')?>
+					</li>
+				</ol>
+			</div>
+			<h4 class="page-title">
+				<?= _('Avances de Campañas')?>
+			</h4>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+
+				<h4 class="card-title">
+					<?= _('Avances de Campañas')?>
+				</h4>
+				<hr>
+				<div class="filtros-toptable">
+					<form>
+						<label class="col-form-label">
+							<?=_('Unidad de negocio')?>
+						</label>
+						<select class="form-control" id="uninegocio">
+							<option>
+								<?=_('Principal')?>
+							</option>
+							<option>
+								<?=_('Plaza Universidad')?>
+							</option>
+							<option>
+								<?=_('Centro')?>
+							</option>
+							<option>
+								<?=_('Plaza Patria')?>
+							</option>
+							<option>
+								<?=_('Calvillo')?>
+							</option>
+						</select>
+
+						<label class="col-form-label">
+							<?=_('Nombre de la campaña')?>
+						</label>
+						<input class="form-control" type="text" placeholder="" required="" v-model="nombreCampana" required>
+					</div>
+					<hr>
+					<div id="undefined-header" class="bootgrid-header container-fluid"><div class="row"><div class="col-sm-12 actionBar"><div class="actions btn-group"><button class="btn btn-default" type="button" title="Actualizar"><span class="icon fa fa-refresh"></span></button><div class="dropdown btn-group"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="dropdown-text">10</span> <span class="caret"></span></button><ul class="dropdown-menu pull-right" role="menu"><li class="active" aria-selected="true"><a data-action="10" class="dropdown-item dropdown-item-button">10</a></li><li aria-selected="false"><a data-action="25" class="dropdown-item dropdown-item-button">25</a></li><li aria-selected="false"><a data-action="50" class="dropdown-item dropdown-item-button">50</a></li><li aria-selected="false"><a data-action="-1" class="dropdown-item dropdown-item-button">Todos</a></li></ul></div><div class="dropdown btn-group"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="dropdown-text"><span class="icon fa fa-th-list"></span></span> <span class="caret"></span></button><ul class="dropdown-menu pull-right" role="menu"><li><label class="dropdown-item"><input name="id" type="checkbox" value="1" class="dropdown-item-checkbox" checked="checked"> id</label></li><li><label class="dropdown-item"><input name="Estado" type="checkbox" value="1" class="dropdown-item-checkbox" checked="checked"> Estado</label></li><li><label class="dropdown-item"><input name="Municipio" type="checkbox" value="1" class="dropdown-item-checkbox" checked="checked"> Muncipio</label></li><li><label class="dropdown-item"><input name="Colonia" type="checkbox" value="1" class="dropdown-item-checkbox" checked="checked"> Colonia</label></li><li><label class="dropdown-item"><input name="CodigoPostal" type="checkbox" value="1" class="dropdown-item-checkbox" checked="checked"> Codigo Postal</label></li><li><label class="dropdown-item"><input name="{{ctx.name}}" type="checkbox" value="1" class="dropdown-item-checkbox" checked="checked"> Acciones</label></li></ul></div></div></div></div></div>
+
+				<table class="table table-condensed table-hover table-striped tabla-ajax-modal" data-url="#" data-url-editar="#" data-url-borrar="#">
+					<thead>
+						<tr>
+							<th data-column-id="id" data-type="numeric"><span>id</span></th>
+							<th data-column-id="fecha_inicio">
+								<span>
+										<?= _('Fecha Inicio') ?>
+								</span>
+							</th>
+							<th data-column-id="fecha_fin">
+								<span>
+										<?= _('Fecha Fin') ?>
+								</span>
+							</th>
+							<th data-column-id="campaña">
+								<span>
+									<?= _('Campaña') ?>
+								</span>
+							</th>
+							<th data-column-id="unidades_negocio">
+								<span>
+									<?= _('Unidades de Negocio') ?>
+								</span>
+							</th>
+							<th data-column-id="tipo_campana">
+								<span>
+									<?= _('Tipo de Campaña') ?>
+								</span>
+							</th>
+							<th data-column-id="encuestas">
+								<span>
+									<?= _('Encuenstas') ?>
+								</span>
+							</th>
+              <th data-column-id="MEC">
+								<span>
+									<?= _('MEC') ?>
+								</span>
+							</th>
+              <th data-column-id="avance">
+								<span>
+									<?= _('Avance') ?>
+								</span>
+							</th>
+							<th data-formatter="acciones" data-sortable="false">
+								<span>
+									<?= _('Acciones') ?>
+								</span>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>14/09/2018</td>
+							<td>14/09/2018</td>
+							<td>Enero-Febrero</td>
+							<td>Nombre del Negocio 1</td>
+							<td>Prescencial</td>
+							<td>1000</td>
+							<td>4</td>
+							<td>
+							    <div class="progress prograss100px">
+							    <div class="progress-bar bgblue" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+							      <span class="progafter">50%</span>
+							    </div>
+							  </div>
+							</td>
+							<td>
+								<a href="#" class="btn btn-info bgblue" data-toggle="modal" data-target="#nuevaCamp" data-id="1" >
+									<i class="fas fa-search"></i>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>14/09/2018</td>
+							<td>14/09/2018</td>
+							<td>Enero-Febrero</td>
+							<td>Nombre del Negocio 1</td>
+							<td>Prescencial</td>
+							<td>1000</td>
+							<td>4</td>
+							<td>
+							    <div class="progress prograss100px">
+							    <div class="progress-bar bgblue" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+							      <span class="progafter">20%</span>
+							    </div>
+							  </div>
+							</td>
+							<td>
+								<a href="#" class="btn btn-info bgblue" data-toggle="modal" data-target="#nuevaCamp" data-id="1" >
+									<i class="fas fa-search"></i>
+								</a>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<div class="panel-body lideres-censistas">
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	<div id="nuevaCamp" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">
+						<?=_('Detalles de campaña:')?> "Lorem Ipsum"
+					</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+						<div class="detalle-camp">
+							<div>
+								<span class="titulo_MEC"><?=_('Unidad de Negocio:')?></span>
+								<span class="subtitulo_MEC"><?=_('Principal')?></span>
+							</div>
+							<div>
+								<span class="titulo_MEC"><?=_('Nombre de la campaña')?></span>
+								<span class="subtitulo_MEC"><?=_('Lorem Ipsum')?></span>
+							</div>
+							<div >
+								<span class="titulo_MEC"><?=_('Tipo de Campaña')?></span>
+								<span class="subtitulo_MEC"><?=_('Correo')?></span>
+							</div>
+							<div >
+								<span class="titulo_MEC"><?=_('Cantidad de encuestas')?></span>
+								<span class="subtitulo_MEC"> 4550</span>
+							</div>
+						</div>
+						<hr>
+
+						<div class="nuevacamp-bot avance-camp">
+							<h4 class="modal-title">
+								<?=_('Momentos de Experiencia de Cliente Seleccionados:')?> "Lorem Ipsum"
+							</h4>
+							<hr>
+								<ul class="meclist">
+									<li>
+										<span class="titulo_MEC"><?=_('Momento de Experiencia de Cliente 1')?></span>
+								</li>
+								<li>
+										<span class="titulo_MEC"><?=_('Momento de Experiencia de Cliente 1')?></span>
+								</li>
+								<li>
+										<span class="titulo_MEC"><?=_('Momento de Experiencia de Cliente 1')?></span>
+								</li>
+								<li>
+										<span class="titulo_MEC"><?=_('Momento de Experiencia de Cliente 1')?></span>
+								</li>
+							</ul>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>

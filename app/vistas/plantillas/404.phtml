@@ -1,0 +1,48 @@
+<?php global $site_url; ?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+		<title>404 | Página no encontrada</title>
+		<meta content="Sistema de Adminsitración" name="description" />
+		<meta content="Teko Estudio" name="author" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<link rel="shortcut icon" href="<?php echo $site_url; ?>/sistema/images/favicon.ico?v=1">
+		<link rel="icon" type="image/x-icon" href="<?php echo $site_url; ?>/sistema/images/favicon.ico?v=1">
+
+		<!-- ESTILOS THEME -->
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="<?php echo $site_url; ?>/sistema/assets/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="<?php echo $site_url; ?>/sistema/assets/all-plugins-basic.min.css" rel="stylesheet" type="text/css">
+        <link href="<?php echo $site_url; ?>/sistema/assets/css/style.css" rel="stylesheet" type="text/css">
+
+
+
+	</head>
+
+	<body class="fixed-left">
+
+		<!-- Begin page -->
+		<div class="accountbg"></div>
+		<div class="wrapper-page">
+
+			<div class="card">
+				<div class="card-block">
+
+					<div class="ex-page-content text-center">
+						<?= $this->content ?>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- SCRIPTS PAGES -->
+		<script type="text/javascript" src="<?php echo $site_url; ?>/sistema/assets/all-plugins-basic.min.js"></script>
+		<script type="text/javascript" src="<?php echo $site_url; ?>/sistema/assets/js/app.js"></script>
+	</body>
+</html>

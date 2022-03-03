@@ -1,0 +1,334 @@
+<div class="row">
+	<div class="col-sm-12">
+		<div class="page-title-box">
+			<div class="btn-group float-right">
+				<ol class="breadcrumb hide-phone p-0 m-0">
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard') ?>">
+							<?= _('Inicio')?></a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="<?= site_url('dashboard/unidades/') ?>">
+							<?= _('Unidades')?></a>
+					</li>
+					<li class="breadcrumb-item active">
+						<?= _('Administradores Unidades')?>
+					</li>
+				</ol>
+			</div>
+			<h4 class="page-title">
+				<?= _('Admnistradores de Unidades de Negocio')?>
+			</h4>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+
+				<h4 class="card-title">
+					<?php echo _('Administradores de Unidades de Negocio') ?>
+				</h4>
+				<hr>
+				<div class="m-b-30">
+					<button class="btn btn-success waves-effect waves-light m-r-10 m-b-10 pull-right" data-toggle="modal" data-target="#nuevoAdmin">
+						<i class="fas fa-plus-circle"></i>
+						<?php echo _('Agregar') ?>
+					</button>
+				</div>
+				<br>
+				<hr>
+
+				<table class="table table-condensed table-hover table-striped tabla-ajax" data-url="<?= site_url('ajax/sistema/lista-unidad'); ?>" data-url-editar="<?= site_url('ajax/sistema/lista-unidad/consultar');?>" data-url-borrar="<?= site_url('ajax/sistema/lista-unidad/eliminar'); ?>">
+					<thead>
+						<tr>
+							<th data-column-id="id" data-align="center" data-type="numeric">id</th>
+							<th data-column-id="Nombre" data-align="center">
+								<?php echo _('Nombre Administrador') ?>
+							</th>
+							<th data-column-id="email" data-align="center">
+								<?php echo _('Correo') ?>
+							</th>
+							<th data-column-id="Telefono" data-align="center">
+								<?php echo _('Teléfono contacto') ?>
+							</th>
+							<th data-formatter="acciones" data-sortable="false">
+								<?php echo _('Acciones') ?>
+							</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div id="nuevoAdmin" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg modal-xl">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					<?=_('Agregar Administrador')?>
+				</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="row modalrow">
+					<div class="col-sm-3">
+						<!--left col-->
+						<div class="text-center photo">
+							<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar rounded-circle img-thumbnail" alt="avatar">
+							<!-- <h6><?php echo _('Cargar Foto...') ?></h6> -->
+							<h6>Arrastra un archivo o da click en la imagen</h6>
+							<input type="file" class=" dropify text-center center-block file-upload">
+						</div><br>
+					</div>
+					<!--/col-3-->
+					<div class="col-sm-9">
+						<div class="tab-content">
+							<div class="tab-pane active">
+								<h4 class="modal-title">
+									<?php echo _('Datos de Administrador') ?>
+								</h4>
+								<form class="form-ajax" data-url="sistema/lista-unidad/nuevo" data-parsley-validate>
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="first_name">
+												<label class="col-form-label required">
+													<?php echo _('Nombre') ?></label>
+											</label>
+											<input type="text" class="form-control" required="" name="datos[Nombre]" >
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="last_name">
+												<label class="col-form-label required">
+													<?php echo _('Apellido Paterno') ?></label>
+											</label>
+											<input type="text" class="form-control" required="" name="datos[ApPaterno]" >
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="last_name">
+												<label class="col-form-label required">
+													<?php echo _('Apellido Materno') ?></label>
+											</label>
+											<input type="text" class="form-control" required="" name="datos[ApMaterno]" >
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="last_name">
+												<label class="col-form-label required">
+													<?php echo _('Cargo') ?></label>
+											</label>
+											<input type="text" class="form-control" required="" name="datos[cargo]" >
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="phone">
+												<label class="col-form-label required">
+													<?php echo _('Telefono') ?></label>
+											</label>
+											<input type="text" class="form-control" required="" name="datos[telefono]" >
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="email">
+												<label class="col-form-label required">
+													<?php echo _('Email') ?></label>
+											</label>
+											<input type="email" class="form-control" required="" name="datos[email]" >
+										</div>
+									</div>
+									<div class="datosaccess">
+										<h4 class="modal-title">
+											<?php echo _('Crear usuario') ?>
+										</h4>
+										<div class="form-group">
+											<div class="col-xs-6">
+												<label for="usuario">
+													<label class="col-form-label required">
+														<?php echo _('Usuario') ?> </label>
+												</label>
+												<input type="text" class="form-control" required="" name="datos[usuario]" >
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-xs-6">
+												<label for="contraseña">
+													<label class="col-form-label required">
+														<?php echo _('Contraseña') ?></label>
+												</label>
+												<input id="password" type="password" required="" class="form-control" name="datos[password]">
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-xs-6">
+												<label for="contraseña">
+													<label class="col-form-label required">
+														<?php echo _('Confirmar Contraseña') ?></label>
+												</label>
+												<input type="password" class="form-control" name="passwordconfirm" data-parsley-equalto="#password" data-parsley-error-message="Las contraseñas no son iguales" required="">
+											</div>
+										</div>
+									</div>
+									<div class="form-group button">
+										<div class="col-xs-12">
+											<br>
+											<button class="btn btn-primary" type="submit">
+												<?php echo _('Guardar') ?></button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="Editar" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg modal-xl">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					<?=_('Agregar Administrador')?>
+				</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="row modalrow">
+					<div class="col-sm-3">
+						<!--left col-->
+						<div class="text-center photo">
+							<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar rounded-circle img-thumbnail" alt="avatar">
+							<!-- <h6><?php echo _('Cargar Foto...') ?></h6> -->
+							<h6>Arrastra un archivo o da click en la imagen</h6>
+							<input type="file" class=" dropify text-center center-block file-upload">
+						</div><br>
+					</div>
+					<!--/col-3-->
+					<div class="col-sm-9">
+						<div class="tab-content">
+							<div class="tab-pane active">
+								<h4 class="modal-title">
+									<?php echo _('Datos de Administrador') ?>
+								</h4>
+								<form class="form-ajax" data-url="sistema/lista-unidad/editar" data-parsley-validate>
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="first_name">
+												<label class="col-form-label required">
+													<?php echo _('Nombre') ?></label>
+											</label>
+											<input type="text" class="form-control" required="" name="datos[Nombre]" :value="datos.Nombre" >
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="last_name">
+												<label class="col-form-label required">
+													<?php echo _('Apellido Paterno') ?></label>
+											</label>
+											<input type="text" class="form-control" required="" name="datos[ApPaterno]" :value="datos.ApPaterno">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="last_name">
+												<label class="col-form-label required">
+													<?php echo _('Apellido Materno') ?></label>
+											</label>
+											<input type="text" class="form-control" required="" name="datos[ApMaterno]" :value="datos.ApMaterno">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="last_name">
+												<label class="col-form-label required">
+													<?php echo _('Cargo') ?></label>
+											</label>
+											<input type="text" class="form-control" required="" name="datos[Cargo]" :value="datos.Cargo">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="phone">
+												<label class="col-form-label required">
+													<?php echo _('Telefono') ?></label>
+											</label>
+											<input type="text" class="form-control" required="" name="datos[Telefono]" :value="datos.Telefono">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="email">
+												<label class="col-form-label">
+													<?php echo _('Email') ?>:</label>
+											</label>
+											<label>{{datos.email}}</label>
+										</div>
+									</div>
+									<div class="datosaccess">
+										<h4 class="modal-title">
+											<?php echo _('Crear usuario') ?>
+										</h4>
+										<div class="form-group">
+											<div class="col-xs-6">
+												<label for="usuario">
+													<label class="col-form-label">
+														<?php echo _('Usuario') ?>:</label>
+												</label>
+												<label>{{datos.username}}</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-xs-6">
+												<label for="contraseña">
+													<label class="col-form-label">
+														<?php echo _('Contraseña') ?></label>
+												</label>
+												<input id="password" type="password"  class="form-control" name="password">
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-xs-6">
+												<label for="contraseña">
+													<label class="col-form-label">
+														<?php echo _('Confirmar Contraseña') ?></label>
+												</label>
+												<input type="password" class="form-control" name="passwordconfirm" data-parsley-equalto="#password" data-parsley-error-message="Las contraseñas no son iguales">
+											</div>
+										</div>
+									</div>
+									<input type="hidden" name="id" :value="datos.id">
+									<div class="form-group button">
+										<div class="col-xs-12">
+											<br>
+											<button class="btn btn-primary" type="submit">
+												<?php echo _('Guardar') ?></button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
